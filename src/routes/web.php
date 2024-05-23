@@ -14,5 +14,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/register', function () {
+    return view('auth.register');
+});
+Route::get('/thanks', function () {
+    return view('auth.thanks');
+});
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/mypage', function () {
+    return view('mypage');
+});
+Route::get('/detail/{shop_id}', function () {
+    return view('detail');
+});
+Route::get('/done', function () {
+    return view('done');
+});
+Route::get('/email', function () {
+    return view('auth.verify-email');
 });

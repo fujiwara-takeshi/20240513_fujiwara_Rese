@@ -127,3 +127,10 @@
     color: rgb(55, 92, 255);
     text-decoration: none;
 }
+
+.button-logout {
+    padding: 0;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}

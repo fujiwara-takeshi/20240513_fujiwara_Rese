@@ -17,7 +17,6 @@ class CreateFavoritesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('shop_id')->constrained()->cascadeOnDelete();
-            $table->boolean('is_favorite');
             $table->timestamps();
         });
     }

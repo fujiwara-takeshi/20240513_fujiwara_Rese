@@ -20,25 +20,25 @@ use App\Http\Controllers\UserController;
 
 Route::middleware('auth')->group(function() {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-    Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shop.show');
+    Route::get('/detail/{shop}', [ShopController::class, 'show'])->name('shop.show');
     Route::get('/shop/create', [ShopController::class, 'create'])->name('shop.create');
     Route::post('/shop', [ShopController::class, 'store'])->name('shop.store');
-    Route::get('/shop/{shop_id}/edit', [ShopController::class, 'edit'])->name('shop.edit');
-    Route::patch('/shop/{shop_id}', [ShopController::class, 'update'])->name('shop.update');
+    Route::get('/shop/{shop}/edit', [ShopController::class, 'edit'])->name('shop.edit');
+    Route::patch('/shop/{shop}', [ShopController::class, 'update'])->name('shop.update');
 
     Route::post('/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
-    Route::delete('/favorite/{favorite_id}', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+    Route::delete('/favorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 
     Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
     Route::get('/done', [ReservationController::class, 'done'])->name('reservation.done');
-    Route::delete('/reservation/{reservation_id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
-    Route::get('/reservation/{reservation_id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
-    Route::patch('/reservation/{reservation_id}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::delete('/reservation/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+    Route::get('/reservation/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+    Route::patch('/reservation/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
 
-    Route::get('/review/{shop_id}/create', [ReviewController::class, 'create'])->name('review.create');
+    Route::get('/review/{shop}/create', [ReviewController::class, 'create'])->name('review.create');
     Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
 
-    Route::get('/mypage/{user_id}', [UserController::class, 'index'])->name('user.index');
+    Route::get('/mypage/{user}', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('/user', [UserController::class, 'store'])->name('user.store');
 });

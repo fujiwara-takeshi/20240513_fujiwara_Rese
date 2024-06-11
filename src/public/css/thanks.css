@@ -1,6 +1,7 @@
 .content__wrapper {
     width: 40%;
     margin: 0 auto;
+    margin-top: 100px;
 }
 
 .message__box {

@@ -43,13 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function favorites()
+    public function favoriteShops()
     {
-        return $this->belongsToMany(Favorite::class);
+        return $this->belongsToMany(Shop::class, 'favorites', 'user_id', 'shop_id');
     }
 
-    public function role()
+    public function reservedShops()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Shop::class, 'reservations', 'user_id', 'shop_id')->withPivot('id', 'datetime', 'number');
     }
+
 }

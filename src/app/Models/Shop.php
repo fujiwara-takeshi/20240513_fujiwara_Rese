@@ -27,4 +27,15 @@ class Shop extends Model
         return $this->belongsTo(Genre::class);
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+
+    public function reservations()
+    {
+        return $this->belongsToMany(User::class, 'reservations');
+    }
+
+
 }

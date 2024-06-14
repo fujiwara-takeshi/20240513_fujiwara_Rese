@@ -45,7 +45,7 @@
                 </div>
                 <div class="modal__content">
                     <div class="modal__link-item">
-                        <a href="/" class="modal__link link-home">Home</a>
+                        <a href="{{ route('shop.index') }}" class="modal__link link-home">Home</a>
                     </div>
                     <div class="modal__link-item">
                         <form action="/logout" method="post">
@@ -54,7 +54,7 @@
                         </form>
                     </div>
                     <div class="modal__link-item">
-                        <a href="mypage/{$user->id}" class="modal__link link-mypage">Mypage</a>
+                        <a href="{{ route('user.index', [Auth::id()]) }}" class="modal__link link-mypage">Mypage</a>
                     </div>
                 </div>
             </div>

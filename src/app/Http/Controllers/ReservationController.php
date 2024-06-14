@@ -19,17 +19,12 @@ class ReservationController extends Controller
         $reservation->number = $request->number;
         $reservation->save();
         return view('done');
-
     }
 
-    public function done()
+    public function destroy($reservation_id)
     {
-
-    }
-
-    public function destroy()
-    {
-
+        Reservation::find($reservation_id)->delete();
+        return back();
     }
 
     public function edit()

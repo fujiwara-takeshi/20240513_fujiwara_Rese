@@ -19,7 +19,7 @@
                     <a class="logo__menu-icon" href="#modal">
                         <i class="material-symbols-outlined menu-icon">menu</i>
                     </a>
-                    <a class="logo__link" href="">Rese</a>
+                    <a class="logo__link" href="{{ route('shop.index') }}">Rese</a>
                 </div>
             </div>
             <div class="header__inner-right">

@@ -5,18 +5,24 @@
 @endsection
 
 @section('search')
-<form class="search-form" action="">
+<form class="search-form" action="{{ route('shop.search') }}" method="get">
     @csrf
-    <select class="search-form__item-select" name="">
+    <select class="search-form__item-select" name="area_id">
         <option value="">All area</option>
+        @foreach ($areas as $area)
+            <option value="{{ $area->id }}">{{ $area->name }}</option>
+        @endforeach
     </select>
-    <select class="search-form__item-select" name="">
+    <select class="search-form__item-select" name="genre_id">
         <option value="">All genre</option>
+        @foreach ($genres as $genre)
+            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+        @endforeach
     </select>
     <button class="search-form__item-button">
         <i class="material-symbols-outlined search-icon">search</i>
     </button>
-    <input class="search-form__item-input" type="text" placeholder="Search ...">
+    <input class="search-form__item-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="Search ...">
 </form>
 @endsection
 

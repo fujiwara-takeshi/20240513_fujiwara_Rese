@@ -37,5 +37,25 @@ class Shop extends Model
         return $this->belongsToMany(User::class, 'reservations');
     }
 
+    public function scopeAreaSearch($query, $area_id)
+    {
+        if (!empty($area_id)) {
+            $query->where('area_id', $area_id);
+        }
+    }
+
+    public function scopeGenreSearch($query, $genre_id)
+    {
+        if (!empty($genre_id)) {
+            $query->where('genre_id', $genre_id);
+        }
+    }
+
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+    }
 
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 
 Route::middleware('auth')->group(function() {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+    Route::get('/search', [ShopController::class, 'search'])->name('shop.search');
     Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shop.show');
     Route::get('/shop/create', [ShopController::class, 'create'])->name('shop.create');
     Route::post('/shop', [ShopController::class, 'store'])->name('shop.store');

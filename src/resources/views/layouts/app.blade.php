@@ -19,7 +19,7 @@
                     <a class="logo__menu-icon" href="#modal">
                         <i class="material-symbols-outlined menu-icon">menu</i>
                     </a>
-                    <a class="logo__link" href="">Rese</a>
+                    <a class="logo__link" href="{{ route('shop.index') }}">Rese</a>
                 </div>
             </div>
             <div class="header__inner-right">
@@ -35,6 +35,7 @@
             </div>
         </div>
 
+        @if (Auth::check())
         <div class="modal" id="modal">
             <div class="modal__inner">
                 <div class="modal__header">
@@ -44,17 +45,44 @@
                 </div>
                 <div class="modal__content">
                     <div class="modal__link-item">
-                        <a href="" class="modal__link link-home">Home</a>
+                        <a href="{{ route('shop.index') }}" class="modal__link link-home">Home</a>
                     </div>
                     <div class="modal__link-item">
-                        <a href="" class="modal__link link-logout">Logout</a>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="modal__link button-logout">Logout</button>
+                        </form>
                     </div>
                     <div class="modal__link-item">
-                        <a href="" class="modal__link link-mypage">Mypage</a>
+                        <a href="{{ route('user.index', [Auth::id()]) }}" class="modal__link link-mypage">Mypage</a>
                     </div>
                 </div>
             </div>
         </div>
+
+        @else
+        <div class="modal" id="modal">
+            <div class="modal__inner">
+                <div class="modal__header">
+                    <a href="#" class="modal__close-button">
+                        <i class="material-symbols-outlined close-icon">close</i>
+                    </a>
+                </div>
+                <div class="modal__content">
+                    <div class="modal__link-item">
+                        <a href="/" class="modal__link link-home">Home</a>
+                    </div>
+                    <div class="modal__link-item">
+                        <a class="modal__link link-registration" href="/register">Registration</a>
+                    </div>
+                    <div class="modal__link-item">
+                        <a class="modal__link link-login" href="/login" >Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
     </main>
 
 </body>

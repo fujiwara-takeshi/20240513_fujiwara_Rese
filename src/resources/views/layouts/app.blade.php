@@ -48,7 +48,7 @@
                         <a href="{{ route('shop.index') }}" class="modal__link link-home">Home</a>
                     </div>
                     <div class="modal__link-item">
-                        <form action="/logout" method="post">
+                        <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button class="modal__link button-logout">Logout</button>
                         </form>
@@ -73,10 +73,10 @@
                         <a href="/" class="modal__link link-home">Home</a>
                     </div>
                     <div class="modal__link-item">
-                        <a class="modal__link link-registration" href="/register">Registration</a>
+                        <a class="modal__link link-registration" href="{{ route('register') }}">Registration</a>
                     </div>
                     <div class="modal__link-item">
-                        <a class="modal__link link-login" href="/login" >Login</a>
+                        <a class="modal__link link-login" href="{{ route('login') }}" >Login</a>
                     </div>
                 </div>
             </div>

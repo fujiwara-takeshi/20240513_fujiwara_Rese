@@ -11,7 +11,7 @@
             <h2 class="login__title">Login</h2>
         </div>
         <div class="login__form-area">
-            <form class="login__form" action="/login" method="post">
+            <form class="login__form" action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="form__item">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">

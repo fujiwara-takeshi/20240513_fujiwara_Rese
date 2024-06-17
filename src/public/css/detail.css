@@ -77,28 +77,25 @@
     color: #fff;
 }
 
-.form__input-date {
+.form__item-input {
     width: 35%;
-    margin-bottom: 12px;
     padding: 6px 8px;
     display: block;
     border: none;
     border-radius: 5px;
 }
 
-.form__select-time {
+.form__item-select {
     width: 100%;
-    margin-bottom: 12px;
+    margin-top: 12px;
     padding: 6px;
     display: block;
     border-radius: 5px;
 }
 
-.form__select-number {
+.form__item-error {
     width: 100%;
-    padding: 6px;
-    display: block;
-    border-radius: 5px;
+    color: red;
 }
 
 .reservation__confirmation {

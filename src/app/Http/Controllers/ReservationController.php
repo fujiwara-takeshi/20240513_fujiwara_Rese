@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Reservation;
+use App\Http\Requests\ReservationRequest;
 
 
 class ReservationController extends Controller
 {
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
         $reservation = new Reservation();
         $reservation->user_id = Auth::id();

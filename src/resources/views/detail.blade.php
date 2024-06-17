@@ -31,9 +31,14 @@
                 <h2 class="reservation__title">予約</h2>
                 <div class="reservation__form-items">
                     <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                    <input class="form__input-date" id="date" type="date" name="date" value="" oninput="updateDate()">
-                    <select class="form__select-time" id="time" name="time" oninput="updateTime()">
-                        <option hidden>予約時間を選択</option>
+                    <input class="form__item-input" id="date" type="date" name="date" value="" oninput="updateDate()">
+                    <div class="form__item-error">
+                        @error('date')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                    <select class="form__item-select" id="time" name="time" oninput="updateTime()">
+                        <option selected disabled hidden>予約時間を選択</option>
                         <option value="10:00">10:00</option>
                         <option value="10:30">10:30</option>
                         <option value="11:00">11:00</option>
@@ -64,8 +69,13 @@
                         <option value="23:30">23:30</option>
                         <option value="24:00">24:00</option>
                     </select>
-                    <select class="form__select-number" id="number" name="number" oninput="updateNumber()">
-                        <option hidden>予約人数を選択</option>
+                    <div class="form__item-error">
+                        @error('time')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                    <select class="form__item-select" id="number" name="number" oninput="updateNumber()">
+                        <option selected disabled hidden>予約人数を選択</option>
                         <option value="1人">1人</option>
                         <option value="2人">2人</option>
                         <option value="3人">3人</option>
@@ -87,6 +97,11 @@
                         <option value="19人">19人</option>
                         <option value="20人">20人</option>
                     </select>
+                    <div class="form__item-error">
+                        @error('number')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <div class="reservation__confirmation">
                     <table class="confirmation__table">

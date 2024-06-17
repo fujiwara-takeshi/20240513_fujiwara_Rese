@@ -20,7 +20,7 @@
                     <input class="form__item-input" type="text" name="email" value="{{ old('email') }}" placeholder="Email">
                     <div class="form__item-error">
                         @error('email')
-                        {{ $message }}
+                            {{ $message }}
                         @enderror
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <input class="form__item-input" type="text" name="password" placeholder="Password">
                     <div class="form__item-error">
                         @error('password')
-                        {{ $message }}
+                            {{ $message }}
                         @enderror
                     </div>
                 </div>

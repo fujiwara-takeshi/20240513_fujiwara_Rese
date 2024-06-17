@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Fortify;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
-        public function store(Request $request, CreatesNewUsers $creator)//: RegisterResponse
+        public function store(RegisterRequest $request, CreatesNewUsers $creator)
     {
         if (config('fortify.lowercase_usernames')) {
             $request->merge([
@@ -20,9 +21,6 @@ class RegisterController extends Controller
 
         event(new Registered($user = $creator->create($request->all())));
 
-        // $this->guard->login($user);
-
-        // return app(RegisterResponse::class);
         return view('auth.thanks');
     }
 

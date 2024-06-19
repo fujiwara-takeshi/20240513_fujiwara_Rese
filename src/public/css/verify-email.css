@@ -1,0 +1,43 @@
+.content__wrapper {
+    width: 40%;
+    padding-top: 200px;
+    margin: 0 auto;
+}
+
+.content__box {
+    width: 100%;
+    padding: 24px;
+    background-color: #fff;
+    box-shadow: 3px 3px 3px #9b9b9b;
+    border: solid 1px #c4c4c4;
+    border-radius: 5px;
+}
+
+.heading__title {
+    text-align: center;
+    font-size: 18px;
+}
+
+.heading__text {
+    text-align: center;
+}
+
+.content__retransmission-form {
+    margin-top: 50px;
+}
+
+.form__information {
+    text-align: center;
+}
+
+.form__item-button {
+    padding: 6px 14px;
+    margin: 0 auto;
+    display: block;
+    font-size: 12px;
+    color: #fff;
+    background-color: rgb(55, 92, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

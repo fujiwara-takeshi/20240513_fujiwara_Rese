@@ -11,7 +11,7 @@ use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
-        public function store(RegisterRequest $request, CreatesNewUsers $creator)
+    public function store(RegisterRequest $request, CreatesNewUsers $creator)
     {
         if (config('fortify.lowercase_usernames')) {
             $request->merge([
@@ -21,7 +21,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $creator->create($request->all())));
 
-        return view('auth.thanks');
+        return view('auth.verify-email');
     }
 
 }

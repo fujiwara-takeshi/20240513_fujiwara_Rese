@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,9 @@ use App\Http\Controllers\LoginController;
 
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])->name('verification.verify');
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth', 'verified')->group(function() {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
     Route::get('/search', [ShopController::class, 'search'])->name('shop.search');
     Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shop.show');

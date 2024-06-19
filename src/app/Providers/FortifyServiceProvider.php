@@ -32,6 +32,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(function() {
             return view('auth.register');
         });
+        Fortify::verifyEmailView(function() { //ユーザー登録時の認証メール送信ページの指定
+            return view('auth.verify-email');
+        });
         Fortify::loginView(function() {
             return view('auth.login');
         });

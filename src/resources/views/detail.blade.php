@@ -270,7 +270,6 @@
         var m = getToday.getMonth() + 1;
         var d = getToday.getDate();
         var today = y + "-" + m.toString().padStart(2,'0') + "-" + d.toString().padStart(2,'0');
-        // document.getElementById("date").setAttribute("value", today);
         document.getElementById("date").setAttribute("min", today);
     }
     function updateDate() {

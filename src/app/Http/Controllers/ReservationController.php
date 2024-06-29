@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Reservation;
+use App\Models\Shop;
 use App\Http\Requests\ReservationRequest;
 
 
@@ -28,13 +29,28 @@ class ReservationController extends Controller
         return back();
     }
 
-    public function edit()
+    public function edit($reservation_id)
     {
-
+        $item = Reservation::find($reservation_id);
+        $datetime = Carbon::parse($item->datetime);
+        $reservation = [
+            'id' => $reservation_id,
+            'date' => $datetime->toDateString(),
+            'time' => $datetime->toTimeString('minute'),
+            'number' => $item->number,
+        ];
+        $shop = Shop::with('area', 'genre')->find($item->shop_id);
+        return view('detail', compact('reservation', 'shop'));
     }
 
-    public function update()
+    public function update($reservation_id, ReservationRequest $request)
     {
-
+        $reservation = Reservation::find($reservation_id);
+        $date = [
+            'datetime' => Carbon::parse($request->date . $request->time),
+            'number' => $request->number,
+        ];
+        $reservation->update($date);
+        return redirect()->route('user.index', ['user_id' => Auth::id()]);
     }
 }

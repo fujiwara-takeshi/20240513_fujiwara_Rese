@@ -68,7 +68,7 @@
 }
 
 .reservation__top {
-    padding: 10px 40px 220px 24px;
+    padding: 10px 40px 20px 24px;
     background-color: rgb(55, 92, 255);
     border-radius: 5px 5px 0 0;
 }
@@ -98,7 +98,7 @@
     color: red;
 }
 
-.reservation__confirmation {
+.reservation__item {
     width: 96%;
     margin-top: 20px;
     padding: 20px;
@@ -108,7 +108,7 @@
     border-radius: 5px;
 }
 
-.confirmation__table th {
+.reservation__table th {
     padding-right: 40px;
     font-weight: normal;
     text-align: left;

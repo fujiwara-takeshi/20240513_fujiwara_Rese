@@ -31,10 +31,10 @@ class ShopController extends Controller
         return view('index', compact('user', 'favorite_shop_ids', 'shops', 'areas', 'genres'));
     }
 
-    public function show($shop)
+    public function show($shop_id)
     {
         $user = Auth::user();
-        $shop = Shop::with('area', 'genre')->find($shop);
+        $shop = Shop::with('area', 'genre')->find($shop_id);
         return view('detail', compact('user', 'shop'));
     }
 

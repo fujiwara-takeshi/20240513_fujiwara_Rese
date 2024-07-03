@@ -7,7 +7,11 @@
 @section('content')
 <div class="content__wrapper">
     <div class="message__box">
-        <p class="message__text">ご予約ありがとうございます</p>
+        @isset($is_review)
+            <p class="message__text">レビュー投稿ありがとうございます</p>
+        @else
+            <p class="message__text">ご予約ありがとうございます</p>
+        @endif
         <a class="message__link" href="{{ route('shop.index') }}">戻る</a>
     </div>
 </div>

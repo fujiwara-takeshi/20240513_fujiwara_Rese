@@ -25,7 +25,6 @@ class VerifyEmailController extends Controller
             event(new Verified($request->user()));
         }
 
-        // return app(VerifyEmailResponse::class);
-        return view('auth.thanks');
+        return View('auth.thanks');
     }
 }

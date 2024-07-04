@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
             'role_id' => '2',
             'name' => 'ウエオカジュン',
             'email' => 'test@example.com',
-            'password' => 'password'
+            'email_verified_at' => now(),
+            'password' => bcrypt('password')
         ];
         DB::table('users')->insert($param);
     }

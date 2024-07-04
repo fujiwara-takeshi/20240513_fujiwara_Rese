@@ -54,7 +54,7 @@
                         </form>
                     </div>
                     <div class="modal__link-item">
-                        <a href="{{ route('user.index', [Auth::id()]) }}" class="modal__link link-mypage">Mypage</a>
+                        <a href="{{ route('user.index', ['user_id' => Auth::id()]) }}" class="modal__link link-mypage">Mypage</a>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Shop;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -28,12 +29,13 @@ class UserController extends Controller
             }
         }
         $favorites = $user->favoriteShops()->with('area', 'genre')->get();
-        return view('mypage', compact('user', 'reservations', 'favorites'));
+        $shops = Shop::all();
+        return view('mypage', compact('user', 'reservations', 'favorites', 'shops'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-
+        
     }
 
     public function store()

@@ -7,8 +7,10 @@
 @section('content')
 <div class="content__wrapper">
     <div class="message__box">
-        @isset($is_review)
+        @if(isset($is_review))
             <p class="message__text">レビュー投稿ありがとうございます</p>
+        @elseif(isset($is_user))
+            <p class="message__text">店舗代表者を作成しました</p>
         @else
             <p class="message__text">ご予約ありがとうございます</p>
         @endif

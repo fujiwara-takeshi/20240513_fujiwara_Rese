@@ -111,15 +111,30 @@
                         </li>
                         <li>
                             <label for="name">名前：</label>
-                            <input class="create-representative__form-item-input" id="name" type="text" name="name">
+                            <input class="create-representative__form-item-input" id="name" type="text" name="name" value="{{ old('name') }}">
+                            <div class="form__item-error">
+                                @error('name')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </li>
                         <li>
                             <label for="email">メールアドレス：</label>
-                            <input class="create-representative__form-item-input" id="email" type="text" name="email">
+                            <input class="create-representative__form-item-input" id="email" type="text" name="email" value="{{ old('email') }}">
+                            <div class="form__item-error">
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </li>
                         <li>
                             <label for="password">パスワード：</label>
                             <input class="create-representative__form-item-input" id="password" type="text" name="password">
+                            <div class="form__item-error">
+                                @error('password')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </li>
                         <button class="create-representative__form-button">作成</button>
                     </ul>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Shop;
+use App\Http\Requests\RegisterRequest;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -33,13 +34,22 @@ class UserController extends Controller
         return view('mypage', compact('user', 'reservations', 'favorites', 'shops'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        
+
     }
-
-    public function store()
+    
+    public function store(RegisterRequest $request)
     {
-
+        $user = new User();
+        $user->role_id = 3;
+        $user->shop_id = $request->shop_id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->email_verified_at = now();
+        $user->save();
+        $is_user = true;
+        return view('done', compact('is_user'));
     }
 }

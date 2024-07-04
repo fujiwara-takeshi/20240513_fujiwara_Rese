@@ -202,10 +202,13 @@
     display: block;
 }
 
+.form__item-error {
+    width: 100%;
+    color: red;
+}
+
 .create-representative__form-button {
     padding: 6px 12px;
-    /* margin: 0 0 0 auto;
-    display: block; */
     font-size: 14px;
     color: #fff;
     text-decoration: none;

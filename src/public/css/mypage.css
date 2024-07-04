@@ -9,7 +9,7 @@
     text-align: center;
 }
 
-.content__main {
+.content__user {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -19,7 +19,10 @@
     width: 35%;
 }
 
-.reservations__title {
+.reservations__title,
+.favorites__title,
+.create-representative__title,
+.email__title {
     font-size: 22px;
 }
 
@@ -167,4 +170,52 @@
     background-color: #fff;
     border: none;
     cursor: pointer;
+}
+
+.content__admin {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.create-representative {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.create-representative__form ul {
+    padding-left: 0;
+}
+
+.create-representative__form li {
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+.create-representative__form-item-select {
+    width: 40%;
+    padding: 6px;
+}
+
+.create-representative__form-item-input {
+    width: 100%;
+    padding: 4px;
+    display: block;
+}
+
+.create-representative__form-button {
+    padding: 6px 12px;
+    /* margin: 0 0 0 auto;
+    display: block; */
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    text-align: right;
+    background-color: rgb(55, 92, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.email {
+    width: 100%;
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReviewRequest extends FormRequest
+class AreaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,17 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'evaluation' => ['required'],
-            'comment' => ['string', 'max:255'],
+            'area_name' => ['required', 'string', 'unique:areas', 'max:50']
         ];
     }
 
     public function messages()
     {
         return [
-            'evaluation.required' => '評価を選択してください',
-            'comment.string' => 'コメントを文字列で入力してください',
-            'comment.max' => 'コメントを255文字以下で入力してください',
+            'area_name.required' => 'エリア名を入力してください',
+            'area_name.string' => 'エリア名を文字列で入力してください',
+            'area_name.unique' => '未登録のエリア名を入力してください',
+            'area_name.max' => 'エリア名を50文字以下で入力してください'
         ];
     }
 }

@@ -14,19 +14,19 @@ class GenresTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = ['name' => '寿司'];
+        $param = ['genre_name' => '寿司'];
         DB::table('genres')->insert($param);
 
-        $param = ['name' => '焼肉'];
+        $param = ['genre_name' => '焼肉'];
         DB::table('genres')->insert($param);
 
-        $param = ['name' => '居酒屋'];
+        $param = ['genre_name' => '居酒屋'];
         DB::table('genres')->insert($param);
 
-        $param = ['name' => 'イタリアン'];
+        $param = ['genre_name' => 'イタリアン'];
         DB::table('genres')->insert($param);
 
-        $param = ['name' => 'ラーメン'];
+        $param = ['genre_name' => 'ラーメン'];
         DB::table('genres')->insert($param);
     }
 }

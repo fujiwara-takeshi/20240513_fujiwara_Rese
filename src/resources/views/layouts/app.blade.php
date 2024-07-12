@@ -39,13 +39,13 @@
         <div class="modal" id="modal">
             <div class="modal__inner">
                 <div class="modal__header">
-                    <a href="#" class="modal__close-button">
+                    <a class="modal__close-button" href="#">
                         <i class="material-symbols-outlined close-icon">close</i>
                     </a>
                 </div>
                 <div class="modal__content">
                     <div class="modal__link-item">
-                        <a href="{{ route('shop.index') }}" class="modal__link link-home">Home</a>
+                        <a class="modal__link link-home" href="{{ route('shop.index') }}">Home</a>
                     </div>
                     <div class="modal__link-item">
                         <form action="{{ route('logout') }}" method="post">
@@ -54,7 +54,7 @@
                         </form>
                     </div>
                     <div class="modal__link-item">
-                        <a href="{{ route('user.index', ['user_id' => Auth::id()]) }}" class="modal__link link-mypage">Mypage</a>
+                        <a class="modal__link link-mypage" href="{{ route('user.index', ['user_id' => Auth::id()]) }}">Mypage</a>
                     </div>
                 </div>
             </div>
@@ -64,13 +64,13 @@
         <div class="modal" id="modal">
             <div class="modal__inner">
                 <div class="modal__header">
-                    <a href="#" class="modal__close-button">
+                    <a class="modal__close-button" href="#">
                         <i class="material-symbols-outlined close-icon">close</i>
                     </a>
                 </div>
                 <div class="modal__content">
                     <div class="modal__link-item">
-                        <a href="/" class="modal__link link-home">Home</a>
+                        <a class="modal__link link-home" href="{{ route('shop.index') }}">Home</a>
                     </div>
                     <div class="modal__link-item">
                         <a class="modal__link link-registration" href="{{ route('register') }}">Registration</a>

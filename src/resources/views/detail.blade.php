@@ -13,7 +13,7 @@
                 <h2 class="detail-top__shop-name">{{ $shop->name }}</h2>
             </div>
             <div class="detail-top__right-inner">
-                @isset($reservation_history)
+                @isset($is_reserved)
                     <a class="detail-top__review-link" href="{{ route('review.create', ['shop_id' => $shop->id]) }}">レビューする</a>
                 @endisset
             </div>
@@ -23,8 +23,8 @@
         </div>
         <div class="detail__about">
             <div class="detail-about__tag">
-                <span class="detail-about__tag-area">#{{ $shop->area->name }}</span>
-                <span class="detail-about__tag-genre">#{{ $shop->genre->name }}</span>
+                <span class="detail-about__tag-area">#{{ $shop->area->area_name }}</span>
+                <span class="detail-about__tag-genre">#{{ $shop->genre->genre_name }}</span>
             </div>
             <div class="detail-about__text-box">
                 <p class="detail-about__text">{{ $shop->detail }}</p>
@@ -184,6 +184,12 @@
                             @enderror
                         </div>
                         <textarea class="form__item-textarea" name="comment" rows="5" placeholder="コメントを記入してください（任意）"></textarea>
+                        <div class="form__item-error">
+                            @error('comment')
+                                {{ $message }}
+                            @enderror
+                        </div>
+
                     </div>
                 </div>
                 <div class="form__bottom">

@@ -9,7 +9,8 @@ use App\Models\Favorite;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
-use Carbon\Carbon;
+use App\Models\User;
+use App\Http\Requests\ShopRequest;
 
 class ShopController extends Controller
 {
@@ -38,31 +39,43 @@ class ShopController extends Controller
         $user = Auth::user();
         $shop = Shop::with('area', 'genre')->find($shop_id);
         $reservation = Reservation::where('shop_id', $shop_id)->orderBy('datetime', 'asc')->first();
-        $current_datetime = Carbon::now();
-        if ($reservation && $reservation->datetime <= $current_datetime) {
-            $reservation_history = $reservation;
-            return view('detail', compact('user', 'shop', 'reservation_history'));
+        if ($reservation && $reservation->datetime <= now()) {
+            $is_reserved = true;
+            return view('detail', compact('user', 'shop', 'is_reserved'));
         }
         return view('detail', compact('user', 'shop'));
     }
 
-    public function create()
+    public function store(ShopRequest $request)
     {
+        $image = $request->file('image');
+        $path = $image->store('public/images');
 
+        $shop = new Shop();
+        $shop->area_id = $request->area_id;
+        $shop->genre_id = $request->genre_id;
+        $shop->name = $request->shop_name;
+        $shop->detail = $request->detail;
+        $shop->image_path = $path;
+        $shop->save();
+
+        $user = User::find(Auth::id());
+        $user->shop_id = $shop->id;
+        $user->save();
+
+        return redirect()->route('user.index', ['user_id' => Auth::id()])->with('success', '新規店舗情報を登録しました');
     }
 
-    public function store()
+    public function update($shop_id, ShopRequest $request)
     {
+        $shop = Shop::find($shop_id);
+        $image = $request->file('image');
+        $path = $image->store('public/images');
 
-    }
+        $shop->detail = $request->detail;
+        $shop->image_path = $path;
+        $shop->save();
 
-    public function edit()
-    {
-
-    }
-
-    public function update()
-    {
-
+        return redirect()->route('user.index', ['user_id' => Auth::id()])->with('success', '店舗情報を更新しました');
     }
 }

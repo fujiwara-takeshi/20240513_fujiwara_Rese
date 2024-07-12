@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Http\Requests\RegisterRequest;
 use Carbon\Carbon;
 
@@ -12,33 +15,31 @@ class UserController extends Controller
 {
     public function index($user_id)
     {
-        $user = User::with('reservedShops', 'favoriteShops')->where('id', $user_id)->first();
-        $reserved_shops = $user->reservedShops()->orderBy('datetime', 'asc')->get();
-        $reservations = [];
-        $current_datetime = Carbon::now();
-        foreach ($reserved_shops as $reserved_shop) {
-            $datetime = Carbon::parse($reserved_shop->pivot->datetime);
-            if ($datetime >= $current_datetime) {
-                $reservation = [
-                    'id' => $reserved_shop->pivot->id,
-                    'shop' => $reserved_shop->name,
-                    'date' => $datetime->toDateString(),
-                    'time' => $datetime->toTimeString('minute'),
-                    'number' => $reserved_shop->pivot->number
-                ];
-                array_push($reservations, $reservation);
+        if ($user_id == Auth::id()) {
+            $user = User::with('reservedShops', 'favoriteShops')->where('id', $user_id)->first();
+            if ($user->role_id === 1) {
+                $reserved_shops = $user->reservedShops()->where('datetime', '>=', now())->orderBy('datetime', 'asc')->get();
+                $favorites = $user->favoriteShops()->with('area', 'genre')->get();
+                return view('mypage', compact('user', 'reserved_shops', 'favorites'));
+            } elseif ($user->role_id === 2) {
+                $shops = Shop::all();
+                return view('mypage', compact('user', 'shops'));
+            } else {
+                $store_in_charge = Shop::with('reservedUsers', 'area', 'genre')->where('id', $user->shop_id)->first();
+                if (isset($store_in_charge)) {
+                    $reserved_users = $store_in_charge->reservedUsers()->where('datetime', '>=', now())->orderBy('datetime', 'asc')->simplePaginate(10);
+                    return view('mypage', compact('user', 'store_in_charge', 'reserved_users'));
+                } else {
+                    $areas = Area::all();
+                    $genres = Genre::all();
+                    return view('mypage', compact('user', 'store_in_charge', 'areas', 'genres'));
+                }
             }
+        } else {
+            return view('mypage');
         }
-        $favorites = $user->favoriteShops()->with('area', 'genre')->get();
-        $shops = Shop::all();
-        return view('mypage', compact('user', 'reservations', 'favorites', 'shops'));
     }
 
-    public function create()
-    {
-
-    }
-    
     public function store(RegisterRequest $request)
     {
         $user = new User();
@@ -49,7 +50,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->email_verified_at = now();
         $user->save();
-        $is_user = true;
-        return view('done', compact('is_user'));
+
+        return redirect()->route('user.index', ['user_id' => Auth::id()])->with('success', '店舗代表者を登録しました');
     }
 }

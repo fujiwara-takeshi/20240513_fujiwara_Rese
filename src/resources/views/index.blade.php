@@ -10,13 +10,13 @@
     <select class="search-form__item-select" name="area_id">
         <option value="">All area</option>
         @foreach ($areas as $area)
-            <option value="{{ $area->id }}">{{ $area->name }}</option>
+            <option value="{{ $area->id }}">{{ $area->area_name }}</option>
         @endforeach
     </select>
     <select class="search-form__item-select" name="genre_id">
         <option value="">All genre</option>
         @foreach ($genres as $genre)
-            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+            <option value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
         @endforeach
     </select>
     <button class="search-form__item-button">
@@ -36,8 +36,8 @@
             <div class="shop-card__about-box">
                 <div class="shop-card__about-text">
                     <p class="shop-card__about-name">{{ $shop->name }}</p>
-                    <span class="shop-card__about-tag">#{{ $shop->area->name }}</span>
-                    <span class="shop-card__about-tag">#{{ $shop->genre->name }}</span>
+                    <span class="shop-card__about-tag">#{{ $shop->area->area_name }}</span>
+                    <span class="shop-card__about-tag">#{{ $shop->genre->genre_name }}</span>
                 </div>
                 <div class="shop-card__unit">
                     <a class="shop-card__link-detail" href="{{ route('shop.show', ['shop_id' => $shop->id]) }}">詳しくみる</a>

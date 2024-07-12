@@ -4,6 +4,16 @@
     margin-top: 100px;
 }
 
+.alert--danger {
+    font-size: 18px;
+    color: red;
+}
+
+.alert--success {
+    font-size: 20px;
+    color: #32CD32;
+}
+
 .content__top {
     width: 100%;
     text-align: center;
@@ -22,6 +32,9 @@
 .reservations__title,
 .favorites__title,
 .create-representative__title,
+.reservations-by-shop__title,
+.update-shop__title,
+.create-shop__title,
 .email__title {
     font-size: 22px;
 }
@@ -96,10 +109,6 @@
     width: 55%;
 }
 
-.favorites__title {
-    font-size: 22px;
-}
-
 .favorites__card-box {
     display: flex;
     justify-content: space-between;
@@ -172,34 +181,70 @@
     cursor: pointer;
 }
 
-.content__admin {
-    width: 50%;
+.content__admin,
+.content__representative {
+    width: 80%;
     margin: 0 auto;
 }
 
-.create-representative {
+.create-representative,
+.reservations-by-shop,
+.update-shop,
+.create-shop {
     width: 100%;
     margin-bottom: 60px;
 }
 
-.create-representative__form ul {
+.create-representative__form,
+.update-shop__form,
+.store-shop__form,
+.store-area__form,
+.store-genre__form {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.create-representative__form ul,
+.update-shop__form ul,
+.store-shop__form ul,
+.store-area__form ul,
+.store-genre__form ul {
     padding-left: 0;
 }
 
-.create-representative__form li {
+.create-representative__form li,
+.update-shop__form li,
+.store-shop__form li,
+.store-area__form li,
+.store-genre__form li {
     margin-bottom: 20px;
     list-style: none;
 }
 
-.create-representative__form-item-select {
+.create-representative__form-item-select,
+.store-shop__form-item-select {
     width: 40%;
     padding: 6px;
+    display: block;
 }
 
-.create-representative__form-item-input {
+.create-representative__form-item-input,
+.update-shop__form-item-input,
+.store-shop__form-item-input,
+.store-area__form-item-input,
+.store-genre__form-item-input {
     width: 100%;
     padding: 4px;
     display: block;
+}
+
+.update-shop__form-item-textarea,
+.store-shop__form-item-textarea {
+    width: 100%;
+    padding: 4px;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    resize: none;
 }
 
 .form__item-error {
@@ -207,7 +252,11 @@
     color: red;
 }
 
-.create-representative__form-button {
+.create-representative__form-button,
+.update-shop__form-button,
+.store-shop__form-button,
+.store-area__form-button,
+.store-genre__form-button {
     padding: 6px 12px;
     font-size: 14px;
     color: #fff;
@@ -217,6 +266,38 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.reservations-by-shop__table {
+    width: 100%;
+    text-align: left;
+    border: solid 2px #000;
+}
+
+.reservations-by-shop__table tr:first-child {
+    border-bottom: solid 2px #000;
+}
+
+.reservations-by-shop__table th,
+.reservations-by-shop__table td {
+    padding: 5px 5px;
+    border: solid 1px #000;
+}
+
+.pagination__reserved-users {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.create-shop__form-block {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.label__span--red {
+    margin-left: 10px;
+    color: red;
 }
 
 .email {

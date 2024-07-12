@@ -27,14 +27,9 @@ class Shop extends Model
         return $this->belongsTo(Genre::class);
     }
 
-    public function favorites()
+    public function reservedUsers()
     {
-        return $this->belongsToMany(User::class, 'favorites');
-    }
-
-    public function reservations()
-    {
-        return $this->belongsToMany(User::class, 'reservations');
+        return $this->belongsToMany(User::class, 'reservations', 'shop_id', 'user_id')->using(CustomReservation::class)->withPivot('datetime', 'number');
     }
 
     public function scopeAreaSearch($query, $area_id)

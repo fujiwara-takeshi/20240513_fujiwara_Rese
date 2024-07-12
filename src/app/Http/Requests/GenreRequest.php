@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReviewRequest extends FormRequest
+class GenreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,17 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'evaluation' => ['required'],
-            'comment' => ['string', 'max:255'],
+            'genre_name' => ['required', 'string', 'unique:genres', 'max:50']
         ];
     }
 
     public function messages()
     {
         return [
-            'evaluation.required' => '評価を選択してください',
-            'comment.string' => 'コメントを文字列で入力してください',
-            'comment.max' => 'コメントを255文字以下で入力してください',
+            'genre_name.required' => 'ジャンル名を入力してください',
+            'genre_name.string' => 'ジャンル名を文字列で入力してください',
+            'genre_name.unique' => '未登録のジャンル名を入力してください',
+            'genre_name.max' => 'ジャンル名を50文字以下で入力してください'
         ];
     }
 }

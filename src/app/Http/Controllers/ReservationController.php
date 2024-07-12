@@ -32,11 +32,10 @@ class ReservationController extends Controller
     public function edit($reservation_id)
     {
         $item = Reservation::find($reservation_id);
-        $datetime = Carbon::parse($item->datetime);
         $reservation = [
             'id' => $reservation_id,
-            'date' => $datetime->toDateString(),
-            'time' => $datetime->toTimeString('minute'),
+            'date' => $item->datetime->toDateString(),
+            'time' => $item->datetime->toTimeString('minute'),
             'number' => $item->number,
         ];
         $shop = Shop::with('area', 'genre')->find($item->shop_id);
@@ -46,11 +45,9 @@ class ReservationController extends Controller
     public function update($reservation_id, ReservationRequest $request)
     {
         $reservation = Reservation::find($reservation_id);
-        $date = [
-            'datetime' => Carbon::parse($request->date . $request->time),
-            'number' => $request->number,
-        ];
-        $reservation->update($date);
+        $reservation->datetime = Carbon::parse($request->date . $request->time);
+        $reservation->number = $request->number;
+        $reservation->save();
         return redirect()->route('user.index', ['user_id' => Auth::id()]);
     }
 }

@@ -1,12 +1,13 @@
 .content__wrapper {
-    width: 40%;
+    width: 100%;
     padding-top: 200px;
     margin: 0 auto;
 }
 
 .content__box {
-    width: 100%;
+    width: 490px;
     padding: 24px;
+    margin: 0 auto;
     background-color: #fff;
     box-shadow: 3px 3px 3px #9b9b9b;
     border: solid 1px #c4c4c4;
@@ -40,4 +41,11 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .content__box {
+        width: 300px;
+        padding: 20px;
+    }
 }

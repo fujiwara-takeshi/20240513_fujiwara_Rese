@@ -1,11 +1,12 @@
 .content__wrapper {
-    width: 30%;
+    width: 100%;
     padding-top: 200px;
     margin: 0 auto;
 }
 
 .register__box {
-    width: 100%;
+    width: 380px;
+    margin: 0 auto;
     box-shadow: 3px 3px 3px #9b9b9b;
     border-radius: 5px;
 }
@@ -62,4 +63,14 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .register__box {
+        width: 300px;
+    }
+
+    .form__item-input {
+        width: 88%;
+    }
 }

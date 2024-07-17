@@ -17,7 +17,7 @@
         @if($user->role_id === 1)
             <div class="content__user">
                 <div class="reservations">
-                    <h3 class="reservations__title">予約状況</h3>
+                    <h3 class="reservations__title" id="reservations__title">予約状況</h3>
                     @foreach($reserved_shops as $reserved)
                         <div class="reservation-item">
                             <div class="reservation__top">
@@ -65,7 +65,7 @@
                     @endforeach
                 </div>
                 <div class="favorites">
-                    <h3 class="favorites__title">お気に入り店舗</h3>
+                    <h3 class="favorites__title" id="favorites__title">お気に入り店舗</h3>
                     <div class="favorites__card-box">
                         @foreach($favorites as $favorite)
                             <div class="shop-card">
@@ -171,7 +171,6 @@
                                 <th>予約時間</th>
                                 <th>予約人数</th>
                                 <th>予約名</th>
-                                <th>メールアドレス</th>
                             </tr>
                             @foreach($reserved_users as $reservation)
                                 <tr>
@@ -179,7 +178,6 @@
                                     <td>{{ $reservation->pivot->datetime->toTimeString('minute') }}</td>
                                     <td>{{ $reservation->pivot->number }}</td>
                                     <td>{{ $reservation->name }}</td>
-                                    <td>{{ $reservation->email }}</td>
                                 </tr>
                             @endforeach
                         </table>
@@ -209,7 +207,7 @@
                                 </li>
                                 <li>
                                     <label for="detail">店舗詳細<span class="label__span--red">※必須</span></label>
-                                    <textarea class="update-shop__form-item-textarea" id="detail" rows="5" name="detail">{{ $store_in_charge->detail }}</textarea>
+                                    <textarea class="update-shop__form-item-textarea" id="detail" rows="6" name="detail">{{ $store_in_charge->detail }}</textarea>
                                     <div class="form__item-error">
                                         @error('detail')
                                             {{ $message }}
@@ -276,7 +274,7 @@
                                     </li>
                                     <li>
                                         <label for="detail">店舗詳細<span class="label__span--red">※必須</span></label>
-                                        <textarea class="store-shop__form-item-textarea" id="detail" rows="5" name="detail">{{ old('detail') }}</textarea>
+                                        <textarea class="store-shop__form-item-textarea" id="detail" rows="6" name="detail">{{ old('detail') }}</textarea>
                                         <div class="form__item-error">
                                             @error('detail')
                                                 {{ $message }}

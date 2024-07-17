@@ -165,7 +165,7 @@
         @elseif(isset($is_review))
             <form class="review__store-form" action="{{ route('review.store') }}" method="post">
                 @csrf
-                <div class="form__top" style="padding-bottom: 385px;">
+                <div class="form__top form__top--store-review">
                     <h2 class="form__title">レビュー投稿</h2>
                     <div class="review__form-items">
                         <input type="hidden" name="user_id" value="{{ $user->id }}">
@@ -183,7 +183,7 @@
                                 {{ $message }}
                             @enderror
                         </div>
-                        <textarea class="form__item-textarea" name="comment" rows="5" placeholder="コメントを記入してください（任意）"></textarea>
+                        <textarea class="form__item-textarea" name="comment" rows="6" placeholder="コメントを記入してください（任意）"></textarea>
                         <div class="form__item-error">
                             @error('comment')
                                 {{ $message }}
@@ -199,7 +199,7 @@
         @else
             <form class="reservation__store-form" action="{{ route('reservation.store') }}" method="post">
                 @csrf
-                <div class="form__top" style="padding-bottom: 240px;">
+                <div class="form__top form__top--store-reservation">
                     <h2 class="form__title">予約</h2>
                     <div class="reservation__form-items">
                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">

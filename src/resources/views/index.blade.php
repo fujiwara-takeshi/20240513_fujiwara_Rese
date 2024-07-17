@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
-@section('search')
+@section('header__inner-right')
 <form class="search-form" action="{{ route('shop.search') }}" method="get">
     @csrf
     <select class="search-form__item-select" name="area_id">

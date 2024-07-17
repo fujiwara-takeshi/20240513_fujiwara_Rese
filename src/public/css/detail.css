@@ -1,9 +1,5 @@
-.header {
-    width: 100%;
-    height: 100px;
-    position: fixed;
-    top: 0;
-    background-color: #e7e7e700;
+.modal {
+    z-index: 5;
 }
 
 .content__wrapper {
@@ -31,18 +27,17 @@
 
 .detail-top__back-link {
     padding: 2px 7px;
+    font-size: 14px;
     font-weight: bold;
     text-decoration: none;
     background-color: #fff;
     box-shadow: 2px 2px 2px #9b9b9b;
     border: solid 1px #a7a7a7;
     border-radius: 5px;
-    transform: translateY(-2px);
 }
 
 .detail-top__shop-name {
     margin-left: 12px;
-    display: inline;
     font-size: 26px;
 }
 
@@ -79,9 +74,10 @@
 .form {
     width: 46%;
     height: 100%;
-    margin-top: 30px;
+    margin: 30px 0 20px;
     box-shadow: 2px 2px 2px #9b9b9b;
     border-radius: 5px;
+    z-index: 2;
 }
 
 .form__top {
@@ -90,13 +86,21 @@
     border-radius: 5px 5px 0 0;
 }
 
+.form__top--store-reservation {
+    padding-bottom: 46%;
+}
+
+.form__top--store-review {
+    padding-bottom: 71%;
+}
+
 .form__title,
 .reservation__title {
     color: #fff;
 }
 
 .form__item-input {
-    width: 35%;
+    width: 170px;
     padding: 4px 10px;
     font-family: Arial, Helvetica, sans-serif;
     display: block;
@@ -159,4 +163,79 @@
     display: block;
     border-radius: 5px;
     resize: none;
+}
+
+@media screen and (max-width: 768px) {
+    .detail-top__back-link {
+        font-size: 12px;
+    }
+
+    .detail-top__shop-name {
+        font-size: 20px;
+    }
+
+    .detail-top__review-link {
+        font-size: 12px;
+    }
+
+    .form__top--store-review {
+        padding-bottom: 88%;
+    }
+
+    .form__title {
+        font-size: 20px;
+    }
+
+    .form__item-input {
+        width: 120px;
+        font-size: 12px;
+    }
+
+    .form__item-select {
+        font-size: 12px;
+    }
+
+    .reservation__item {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .reservation__table {
+        width: 100%;
+    }
+
+    .reservation__table th {
+        padding-right: 0;
+        display: block;
+    }
+
+    .reservation__table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content__wrapper {
+        padding: 0 20px;
+        display: block;
+    }
+
+    .detail {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .form__top--store-reservation {
+        padding-bottom: 20px;
+    }
+
+    .form__top--store-review {
+        padding-bottom: 20px;
+    }
 }

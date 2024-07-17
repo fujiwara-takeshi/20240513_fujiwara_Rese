@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="header__inner-right">
-                @yield('search')
+                @yield('header__inner-right')
             </div>
         </div>
     </header>

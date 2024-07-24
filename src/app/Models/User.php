@@ -54,4 +54,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Shop::class, 'reservations', 'user_id', 'shop_id')->using(CustomReservation::class)->withPivot('id', 'datetime', 'number');
     }
 
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%');
+        }
+    }
+
+
 }

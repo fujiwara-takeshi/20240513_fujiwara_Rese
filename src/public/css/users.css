@@ -1,0 +1,113 @@
+.search-form {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: solid 1px #c4c4c4;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #9b9b9b;
+}
+
+.search-form__item-input {
+    width: 100%;
+    padding: 6px 0;
+    border: none;
+}
+
+.search-form__item-button {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon {
+    font-size: 22px;
+    color: #dfdfdf;
+}
+
+.content__wrapper {
+    width: 100%;
+    padding: 0 60px;
+    margin: 100px 0 60px;
+}
+
+.customer-users__table {
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    background-color: #f3f3f3;
+    border: solid 2px #000;
+}
+
+.customer-users__table tr:first-child {
+    border-bottom: solid 2px #000;
+}
+
+.customer-users__table th,
+.customer-users__table td {
+    padding: 8px 5px;
+    border: 1px solid #000;
+}
+
+.customer-users__table th:first-child,
+.customer-users__table td:first-child {
+    width: 25%;
+}
+
+.customer-users__table th:last-child,
+.customer-users__table td:last-child {
+    width: 120px;
+    text-align: center;
+}
+
+.customer-users__sender-select-link {
+    padding: 4px 8px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(55, 92, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.customer-users__pagination {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .content__wrapper {
+        padding: 0 40px;
+    }
+
+    .customer-users__table {
+        font-size: 14px;
+    }
+
+    .customer-users__table td {
+        height: 60px;
+    }
+
+    .customer-users__table th:last-child,
+    .customer-users__table td:last-child {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content__wrapper {
+        padding: 0 20px;
+    }
+
+    .customer-users__table {
+        font-size: 12px;
+    }
+
+    .customer-users__table th:last-child,
+    .customer-users__table td:last-child {
+        width: 84px;
+    }
+}

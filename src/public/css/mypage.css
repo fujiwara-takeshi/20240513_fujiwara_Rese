@@ -1,3 +1,11 @@
+.header__users-link {
+    margin: 0 0 0 auto;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(55, 92, 255);
+}
+
 .content__wrapper {
     width: 100%;
     padding: 0 60px;
@@ -184,6 +192,7 @@
 }
 
 .create-representative,
+.email,
 .reservations-by-shop,
 .update-shop,
 .create-shop {
@@ -192,6 +201,7 @@
 }
 
 .create-representative__form,
+.email__form,
 .update-shop__form,
 .store-shop__form,
 .store-area__form,
@@ -225,6 +235,7 @@
 }
 
 .create-representative__form-item-input,
+.email__form-item-input,
 .update-shop__form-item-input,
 .store-shop__form-item-input,
 .store-area__form-item-input,
@@ -234,6 +245,7 @@
     display: block;
 }
 
+.email__form-item-textarea,
 .update-shop__form-item-textarea,
 .store-shop__form-item-textarea {
     width: 100%;
@@ -248,7 +260,24 @@
     color: red;
 }
 
+.email__form-sender-name {
+    display: inline;
+}
+
+.email__mypage-link {
+    padding: 2px 6px;
+    margin: 0px 30px 0 8px;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    border: 1px solid #767676;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
 .create-representative__form-button,
+.email__form-button-submit,
 .update-shop__form-button,
 .store-shop__form-button,
 .store-area__form-button,
@@ -257,17 +286,45 @@
     font-size: 14px;
     color: #fff;
     text-decoration: none;
-    text-align: right;
     background-color: rgb(55, 92, 255);
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
+.email__form-users-link,
+.email__form-button-reset {
+    padding: 5px 11px;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    border: 1px solid #767676;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.email__form-table {
+    width: 100%;
+}
+
+.email__form-table tr {
+    line-height: 40px;
+}
+
+.email__form-table tr:last-of-type {
+    line-height: 70px;
+}
+
+.email__form-table-header:last-of-type {
+    vertical-align: top;
+}
+
 .reservations-by-shop__table {
     width: 100%;
     font-size: 14px;
     text-align: left;
+    background-color: #f3f3f3;
     border: solid 2px #000;
 }
 
@@ -297,10 +354,6 @@
     color: red;
 }
 
-.email {
-    width: 100%;
-}
-
 @media screen and (max-width: 768px) {
     .content__wrapper {
         padding: 0 40px;
@@ -323,6 +376,7 @@
     }
 
     .create-representative__form-item-input,
+    .email__form-item-input,
     .update-shop__form-item-input,
     .store-shop__form-item-input,
     .store-area__form-item-input,
@@ -360,6 +414,7 @@
     }
 
     .create-representative__form-item-input,
+    .email__form-item-input,
     .update-shop__form-item-input,
     .store-shop__form-item-input,
     .store-area__form-item-input,

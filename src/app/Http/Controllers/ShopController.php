@@ -14,23 +14,17 @@ use App\Http\Requests\ShopRequest;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         $favorite_shop_ids = Favorite::where('user_id', $user->id)->pluck('shop_id')->toArray();
+        $areas = Area::all();
+        $genres = Genre::all();
+        if ($request->has('keyword')) {
+            $shops = Shop::with('area', 'genre')->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
+            return view('index', compact('user', 'favorite_shop_ids', 'shops', 'areas', 'genres'));
+        }
         $shops = Shop::with('area', 'genre')->get();
-        $areas = Area::all();
-        $genres = Genre::all();
-        return view('index', compact('user', 'favorite_shop_ids', 'shops', 'areas', 'genres'));
-    }
-
-    public function search(Request $request)
-    {
-        $user = Auth::user();
-        $favorite_shop_ids = Favorite::where('user_id', $user->id)->pluck('shop_id')->toArray();
-        $shops = Shop::with('area', 'genre')->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
-        $areas = Area::all();
-        $genres = Genre::all();
         return view('index', compact('user', 'favorite_shop_ids', 'shops', 'areas', 'genres'));
     }
 

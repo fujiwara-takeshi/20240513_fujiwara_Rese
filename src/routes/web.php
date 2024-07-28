@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,6 @@ Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke
 
 Route::middleware('auth', 'verified')->group(function() {
     Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-    Route::get('/search', [ShopController::class, 'search'])->name('shop.search');
     Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shop.show');
     Route::post('/shop', [ShopController::class, 'store'])->name('shop.store');
     Route::patch('/shop/{shop_id}', [ShopController::class, 'update'])->name('shop.update');
@@ -42,6 +42,7 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::delete('/favorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 
     Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
+    Route::get('/reservation/{reservation_id}', [ReservationController::class, 'show'])->name('reservation.show');
     Route::delete('/reservation/{reservation_id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
     Route::get('/reservation/{reservation_id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
     Route::patch('/reservation/{reservation_id}', [ReservationController::class, 'update'])->name('reservation.update');
@@ -51,4 +52,8 @@ Route::middleware('auth', 'verified')->group(function() {
 
     Route::get('/mypage/{user_id}', [UserController::class, 'index'])->name('user.index');
     Route::post('/user', [UserController::class, 'store'])->name('user.store');
+    Route::get('/users', [UserController::class, 'users'])->name('users');
+
+    Route::post('/mail/confirm', [MailController::class, 'confirm'])->name('mail.confirm');
+    Route::post('/mail', [MailController::class, 'send'])->name('mail.send');
 });

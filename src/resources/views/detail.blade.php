@@ -33,7 +33,7 @@
     </div>
     <div class="form">
         @if(isset($reservation))
-            <form class="reservation__update-form" action="{{ route('reservation.update', ['reservation_id' => $reservation['id']]) }}" method="post">
+            <form class="reservation__update-form" action="{{ route('reservation.update', ['reservation_id' => $reservation->id]) }}" method="post">
                 @csrf
                 @method('patch')
                 <div class="form__top">
@@ -74,8 +74,6 @@
                             <option value="22:00">22:00</option>
                             <option value="22:30">22:30</option>
                             <option value="23:00">23:00</option>
-                            <option value="23:30">23:30</option>
-                            <option value="24:00">24:00</option>
                         </select>
                         <div class="form__item-error">
                             @error('time')
@@ -84,26 +82,26 @@
                         </div>
                         <select class="form__item-select" id="number" name="number" oninput="updateNumber()">
                             <option selected disabled hidden>予約人数を選択</option>
-                            <option value="1人">1人</option>
-                            <option value="2人">2人</option>
-                            <option value="3人">3人</option>
-                            <option value="4人">4人</option>
-                            <option value="5人">5人</option>
-                            <option value="6人">6人</option>
-                            <option value="7人">7人</option>
-                            <option value="8人">8人</option>
-                            <option value="9人">9人</option>
-                            <option value="10人">10人</option>
-                            <option value="11人">11人</option>
-                            <option value="12人">12人</option>
-                            <option value="13人">13人</option>
-                            <option value="14人">14人</option>
-                            <option value="15人">15人</option>
-                            <option value="16人">16人</option>
-                            <option value="17人">17人</option>
-                            <option value="18人">18人</option>
-                            <option value="19人">19人</option>
-                            <option value="20人">20人</option>
+                            <option value="1名">1名</option>
+                            <option value="2名">2名</option>
+                            <option value="3名">3名</option>
+                            <option value="4名">4名</option>
+                            <option value="5名">5名</option>
+                            <option value="6名">6名</option>
+                            <option value="7名">7名</option>
+                            <option value="8名">8名</option>
+                            <option value="9名">9名</option>
+                            <option value="10名">10名</option>
+                            <option value="11名">11名</option>
+                            <option value="12名">12名</option>
+                            <option value="13名">13名</option>
+                            <option value="14名">14名</option>
+                            <option value="15名">15名</option>
+                            <option value="16名">16名</option>
+                            <option value="17名">17名</option>
+                            <option value="18名">18名</option>
+                            <option value="19名">19名</option>
+                            <option value="20名">20名</option>
                         </select>
                         <div class="form__item-error">
                             @error('number')
@@ -121,15 +119,15 @@
                                 </tr>
                                 <tr>
                                     <th>Date</th>
-                                    <td>{{ $reservation['date'] }}</td>
+                                    <td>{{ $reservation->datetime->toDateString() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Time</th>
-                                    <td>{{ $reservation['time'] }}</td>
+                                    <td>{{ $reservation->datetime->toTimeString('minute') }}</td>
                                 </tr>
                                 <tr>
                                     <th>Number</th>
-                                    <td>{{ $reservation['number'] }}</td>
+                                    <td>{{ $reservation->number }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -189,7 +187,6 @@
                                 {{ $message }}
                             @enderror
                         </div>
-
                     </div>
                 </div>
                 <div class="form__bottom">
@@ -248,26 +245,26 @@
                         </div>
                         <select class="form__item-select" id="number" name="number" oninput="updateNumber()">
                             <option selected disabled hidden>予約人数を選択</option>
-                            <option value="1人">1人</option>
-                            <option value="2人">2人</option>
-                            <option value="3人">3人</option>
-                            <option value="4人">4人</option>
-                            <option value="5人">5人</option>
-                            <option value="6人">6人</option>
-                            <option value="7人">7人</option>
-                            <option value="8人">8人</option>
-                            <option value="9人">9人</option>
-                            <option value="10人">10人</option>
-                            <option value="11人">11人</option>
-                            <option value="12人">12人</option>
-                            <option value="13人">13人</option>
-                            <option value="14人">14人</option>
-                            <option value="15人">15人</option>
-                            <option value="16人">16人</option>
-                            <option value="17人">17人</option>
-                            <option value="18人">18人</option>
-                            <option value="19人">19人</option>
-                            <option value="20人">20人</option>
+                            <option value="1名">1名</option>
+                            <option value="2名">2名</option>
+                            <option value="3名">3名</option>
+                            <option value="4名">4名</option>
+                            <option value="5名">5名</option>
+                            <option value="6名">6名</option>
+                            <option value="7名">7名</option>
+                            <option value="8名">8名</option>
+                            <option value="9名">9名</option>
+                            <option value="10名">10名</option>
+                            <option value="11名">11名</option>
+                            <option value="12名">12名</option>
+                            <option value="13名">13名</option>
+                            <option value="14名">14名</option>
+                            <option value="15名">15名</option>
+                            <option value="16名">16名</option>
+                            <option value="17名">17名</option>
+                            <option value="18名">18名</option>
+                            <option value="19名">19名</option>
+                            <option value="20名">20名</option>
                         </select>
                         <div class="form__item-error">
                             @error('number')

@@ -23,6 +23,12 @@ class ReservationController extends Controller
         return view('done');
     }
 
+    public function show($reservation_id)
+    {
+        $reservation = Reservation::with('shop', 'user')->find($reservation_id);
+        return view('reservation', compact('reservation'));
+    }
+
     public function destroy($reservation_id)
     {
         Reservation::find($reservation_id)->delete();
@@ -31,13 +37,7 @@ class ReservationController extends Controller
 
     public function edit($reservation_id)
     {
-        $item = Reservation::find($reservation_id);
-        $reservation = [
-            'id' => $reservation_id,
-            'date' => $item->datetime->toDateString(),
-            'time' => $item->datetime->toTimeString('minute'),
-            'number' => $item->number,
-        ];
+        $reservation = Reservation::find($reservation_id);
         $shop = Shop::with('area', 'genre')->find($item->shop_id);
         return view('detail', compact('reservation', 'shop'));
     }

@@ -1,0 +1,86 @@
+.content__wrapper {
+    width: 100%;
+    padding: 0 60px;
+    margin-top: 100px;
+}
+
+.email-confirm {
+    width: 100%;
+}
+
+.email-confirm__title {
+    font-size: 22px;
+}
+
+.email-confirm__form {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.email-confirm__table {
+    width: 100%;
+}
+
+.email-confirm__table tr {
+    border: 1px solid #000;
+    background-color: #fff;
+}
+
+.email-confirm__table-header {
+    width: 140px;
+    padding: 10px 5px;
+    text-align-last: justify;
+    vertical-align: top;
+}
+
+.email-confirm__table-data {
+    padding: 10px 5px;
+}
+
+.email-confirm__form-button-block {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.email-confirm__form-button-submit {
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(55, 92, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.email-confirm__link-return {
+    padding: 5px 11px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    border: 1px solid #767676;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .content__wrapper {
+        padding: 0 40px;
+        }
+
+    .email-confirm__table {
+        font-size: 12px;
+    }
+
+    .email-confirm__table-header {
+        width: 110px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content__wrapper {
+        padding: 0 20px;
+    }
+}

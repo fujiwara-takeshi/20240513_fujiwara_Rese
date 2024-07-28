@@ -32,6 +32,23 @@
     margin: 100px 0 60px;
 }
 
+.content-top {
+    display: flex;
+    align-items: center;
+}
+
+.content-top__back-link {
+    padding: 2px 7px;
+    margin-right: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #9b9b9b;
+    border: solid 1px #a7a7a7;
+    border-radius: 5px;
+}
+
 .customer-users__table {
     width: 100%;
     text-align: left;

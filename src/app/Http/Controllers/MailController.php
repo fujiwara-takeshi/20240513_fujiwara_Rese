@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\MailCreate;
+use App\Mail\CreateMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -27,7 +27,7 @@ class MailController extends Controller
     {
         $postarr = $request->all();
         $mailto = array('tfdxvjiyre75528@gmail.com', $postarr['address']);
-        Mail::to($mailto)->send(new MailCreate($postarr));
+        Mail::to($mailto)->send(new CreateMail($postarr));
         $request->session()->regenerateToken();
 
         return redirect()->route('user.index', ['user_id' => Auth::id()])->with('success', 'メールを送信しました');

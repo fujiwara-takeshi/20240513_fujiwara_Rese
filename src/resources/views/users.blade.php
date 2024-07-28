@@ -21,8 +21,9 @@
             不正なアクセスが行われました
         </div>
     @endif
-    <div class="content__top">
-        <h2 class="content__top-title">利用者ユーザー一覧</h2>
+    <div class="content-top">
+        <a class="content-top__back-link" href="{{ route('user.index', ['user_id' => Auth::id()]) }}"><</a>
+        <h2 class="content-top__title">利用者ユーザー一覧</h2>
     </div>
     <table class="customer-users__table">
         <tr>

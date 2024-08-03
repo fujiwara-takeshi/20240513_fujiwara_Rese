@@ -16,7 +16,13 @@
 
 <p>予約時間：{{ $reservation->datetime->toTimeString('minute') }}</p>
 
-<p>予約人数：{{ $reservation->number }}</p>
+<p>予約人数：{{ $reservation->number }}名</p>
+
+@if($reservation->course_id === null)
+<p>予約内容：席のみ予約</p>
+@else
+<p>予約内容：{{ $reservation->course->amount }}円コース</p>
+@endif
 
 <p>--------------------------------------------------</p>
 

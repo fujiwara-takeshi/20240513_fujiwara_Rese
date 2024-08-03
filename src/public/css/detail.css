@@ -81,13 +81,13 @@
 }
 
 .form__top {
-    padding: 10px 40px 20px 24px;
+    padding: 10px 36px 20px 24px;
     background-color: rgb(55, 92, 255);
     border-radius: 5px 5px 0 0;
 }
 
 .form__top--store-reservation {
-    padding-bottom: 46%;
+    padding-bottom: 30%;
 }
 
 .form__top--store-review {
@@ -97,6 +97,10 @@
 .form__title,
 .reservation__title {
     color: #fff;
+}
+
+.reservation__form-item {
+    margin-bottom: 12px;
 }
 
 .form__item-input {
@@ -110,20 +114,38 @@
 
 .form__item-select {
     width: 100%;
-    margin-top: 12px;
     padding: 6px;
     display: block;
     border-radius: 5px;
 }
 
-.form__item-error {
+.form__item-radio-block {
+    margin-top: 12px;
+    display: flex;
+}
+
+.form__item-radio-label {
+    width: 140px;
+    display: block;
+    font-size: 14px;
+    color: #fff;
+}
+
+.form__item-radio {
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+}
+
+.form__item-error,
+.form__item-alert {
     width: 100%;
     color: red;
 }
 
 .reservation__item {
     width: 96%;
-    margin-top: 20px;
     padding: 20px;
     font-size: 16px;
     color: #fff;
@@ -178,6 +200,10 @@
         font-size: 12px;
     }
 
+    .form__top--store-reservation {
+        padding-bottom: 10%;
+    }
+
     .form__top--store-review {
         padding-bottom: 88%;
     }
@@ -193,6 +219,14 @@
 
     .form__item-select {
         font-size: 12px;
+    }
+
+    .form__item-radio-block {
+        display: block;
+    }
+
+    .form__item-error {
+        font-size: 14px;
     }
 
     .reservation__item {
@@ -229,6 +263,10 @@
 
     .form {
         width: 100%;
+    }
+
+    .form__item-radio-block {
+        display: flex;
     }
 
     .form__top--store-reservation {

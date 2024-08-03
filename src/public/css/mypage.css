@@ -338,9 +338,13 @@
     border: solid 1px #000;
 }
 
-.pagination__reserved-users {
-    margin-top: 10px;
-    text-align: center;
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    margin: 0 5px;
 }
 
 .create-shop__form-block {
@@ -373,6 +377,10 @@
 
     .shop-card {
         width: 100%;
+    }
+
+    .reservations-by-shop__table {
+        font-size: 12px;
     }
 
     .create-representative__form-item-input,

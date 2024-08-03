@@ -31,7 +31,15 @@
             </tr>
             <tr>
                 <th>予約人数</th>
-                <td>{{ $reservation->number }}</td>
+                <td>{{ $reservation->number }}名</td>
+            </tr>
+            <tr>
+                <th>予約内容</th>
+                @if($reservation->course_id === null)
+                    <td>席のみ予約</td>
+                @else
+                    <td>{{ $reservation->course->amount }}円コース</td>
+                @endif
             </tr>
         </table>
     @endif

@@ -26,7 +26,7 @@ class MailController extends Controller
     public function send(Request $request)
     {
         $postarr = $request->all();
-        $mailto = array('tfdxvjiyre75528@gmail.com', $postarr['address']);
+        $mailto = $postarr['address'];
         Mail::to($mailto)->send(new CreateMail($postarr));
         $request->session()->regenerateToken();
 

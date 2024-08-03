@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         $param = [
             'role_id' => '2',
-            'name' => 'ウエオカジュン',
+            'name' => '上岡 純',
             'email' => 'test@example.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password')

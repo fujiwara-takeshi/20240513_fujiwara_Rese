@@ -14,18 +14,29 @@ class ReservationController extends Controller
 {
     public function store(ReservationRequest $request)
     {
+        $course = $request->course;
         $reservation = new Reservation();
         $reservation->user_id = Auth::id();
         $reservation->shop_id = $request->shop_id;
+        if ($course === '3000円コース') {
+            $reservation->course_id = 1;
+        } elseif ($course === '5000円コース') {
+            $reservation->course_id = 2;
+        }
         $reservation->datetime = Carbon::parse($request->date . $request->time);
         $reservation->number = $request->number;
         $reservation->save();
+
+        if ($request->payment === 'advance') {
+            $reservation_id = $reservation->id;
+            return redirect(route('payment.create', ['reservation_id' => $reservation_id]));
+        }
         return view('done');
     }
 
     public function show($reservation_id)
     {
-        $reservation = Reservation::with('shop', 'user')->find($reservation_id);
+        $reservation = Reservation::with('shop', 'user', 'course')->find($reservation_id);
         return view('reservation', compact('reservation'));
     }
 
@@ -37,8 +48,8 @@ class ReservationController extends Controller
 
     public function edit($reservation_id)
     {
-        $reservation = Reservation::find($reservation_id);
-        $shop = Shop::with('area', 'genre')->find($item->shop_id);
+        $reservation = Reservation::with('course')->find($reservation_id);
+        $shop = Shop::with('area', 'genre')->find($reservation->shop_id);
         return view('detail', compact('reservation', 'shop'));
     }
 
@@ -46,7 +57,6 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::find($reservation_id);
         $reservation->datetime = Carbon::parse($request->date . $request->time);
-        $reservation->number = $request->number;
         $reservation->save();
         return redirect()->route('user.index', ['user_id' => Auth::id()]);
     }

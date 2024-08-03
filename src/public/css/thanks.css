@@ -15,12 +15,17 @@
     text-align: center;
 }
 
-.message__text {
+.message-text {
     margin: 0 0 50px 0;
     font-size: 24px;
 }
 
-.message__link {
+.message-success {
+    font-size: 20px;
+    color: #52e22e;
+}
+
+.message-link {
     padding: 4px 14px;
     font-size: 14px;
     color: #fff;

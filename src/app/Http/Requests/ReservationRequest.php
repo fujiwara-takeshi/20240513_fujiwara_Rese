@@ -23,10 +23,19 @@ class ReservationRequest extends FormRequest
      */
     public function rules()
     {
+        if ($this->isMethod('patch')) {
+            return [
+                'date' => 'required',
+                'time' => 'required',
+            ];
+        }
+
         return [
             'date' => 'required',
             'time' => 'required',
-            'number' => 'required'
+            'number' => 'required',
+            'course' => 'required',
+            'payment' => 'required',
         ];
     }
 
@@ -36,6 +45,8 @@ class ReservationRequest extends FormRequest
             'date.required' => '予約日を選択してください',
             'time.required' => '予約時間を選択してください',
             'number.required' => '予約人数を選択してください',
+            'course.required' => '予約内容を選択してください',
+            'payment.required' => '支払い方法を選択してください',
         ];
     }
 }

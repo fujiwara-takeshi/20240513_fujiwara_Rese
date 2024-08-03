@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,7 @@ Route::middleware('auth', 'verified')->group(function() {
 
     Route::post('/mail/confirm', [MailController::class, 'confirm'])->name('mail.confirm');
     Route::post('/mail', [MailController::class, 'send'])->name('mail.send');
+
+    Route::get('/payment/{reservation_id}', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
 });

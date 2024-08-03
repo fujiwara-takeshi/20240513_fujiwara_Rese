@@ -57,7 +57,7 @@
                                     </tr>
                                     <tr>
                                         <th>Number</th>
-                                        <td>{{ $reserved->pivot->number }}</td>
+                                        <td>{{ $reserved->pivot->number }}名</td>
                                     </tr>
                                 </table>
                             </div>
@@ -213,27 +213,33 @@
                         {{ session('success') }}
                     @endif
                 </div>
-                @isset($reserved_users)
+                @isset($reservations)
                     <div class="reservations-by-shop">
                         <h3 class="reservations-by-shop__title">担当店舗予約情報</h3>
                         <table class="reservations-by-shop__table">
                             <tr>
                                 <th>予約日</th>
                                 <th>予約時間</th>
+                                <th>予約内容</th>
                                 <th>予約人数</th>
                                 <th>予約名</th>
                             </tr>
-                            @foreach($reserved_users as $reservation)
+                            @foreach($reservations as $reservation)
                                 <tr>
                                     <td>{{ $reservation->pivot->datetime->toDateString() }}</td>
                                     <td>{{ $reservation->pivot->datetime->toTimeString('minute') }}</td>
-                                    <td>{{ $reservation->pivot->number }}</td>
+                                    @if($reservation->pivot->course_id === null)
+                                        <td>席のみ予約</td>
+                                    @else
+                                        <td>{{ $reservation->amount }}円コース</td>
+                                    @endif
+                                    <td>{{ $reservation->pivot->number }}名</td>
                                     <td>{{ $reservation->name }}</td>
                                 </tr>
                             @endforeach
                         </table>
-                        <div class="pagination__reserved-users">
-                            {{ $reserved_users->links() }}
+                        <div class="reservations-by-shop__pagination">
+                            {{ $reservations->onEachSide(1)->links() }}
                         </div>
                     </div>
                 @endisset

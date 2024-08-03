@@ -29,7 +29,7 @@ class Shop extends Model
 
     public function reservedUsers()
     {
-        return $this->belongsToMany(User::class, 'reservations', 'shop_id', 'user_id')->using(CustomReservation::class)->withPivot('datetime', 'number');
+        return $this->belongsToMany(User::class, 'reservations', 'shop_id', 'user_id')->using(CustomReservation::class)->withPivot('course_id','datetime', 'number');
     }
 
     public function scopeAreaSearch($query, $area_id)

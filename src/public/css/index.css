@@ -1,0 +1,156 @@
+.search-form {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: solid 1px #c4c4c4;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #9b9b9b;
+}
+
+.search-form__item-select {
+    width: 90px;
+    padding: 6px 0;
+    font-size: 12px;
+    border: none;
+}
+
+.search-form__item-button {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon {
+    font-size: 22px;
+    color: #dfdfdf;
+}
+
+.search-form__item-input {
+    width: 60%;
+    padding: 6px 0;
+    border: none;
+}
+
+.search-form__item-select:last-of-type,
+.search-form__item-button {
+    padding-left: 4px;
+    margin-left: 4px;
+    border-left: solid 1.5px #dfdfdf;
+}
+
+.content__wrapper {
+    width: 100%;
+    padding: 0 40px 20px;
+    margin-top: 100px;
+    display: grid;
+    gap: 20px 10px;
+    grid-template-columns: repeat(auto-fit, minmax(223px, 1fr));
+}
+
+.shop-card {
+    max-width: 300px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #9b9b9b;
+}
+
+.shop-card__img-box {
+    width: 100%;
+    height: 160px;
+    border-radius: 5px 5px 0 0;
+}
+
+.shop-card__img-box img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+.shop-card__about-box {
+    width: 100%;
+    height: 120px;
+    padding: 18px;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+}
+
+.shop-card__about-text {
+    margin-bottom: 6px;
+}
+
+.shop-card__about-name {
+    height: 18px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.shop-card__about-tag {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.shop-card__unit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-card__link-detail {
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(55, 92, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.shop-card__button-favorite {
+    padding: 0;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .search-form {
+        padding: 4px;
+    }
+
+    .search-form__item-select {
+        width: 64px;
+        font-size: 10px;
+    }
+
+    .search-form__item-button {
+        padding: 0;
+    }
+
+    .search-icon {
+        font-size: 16px;
+    }
+
+    .search-form__item-input {
+        font-size: 10px;
+    }
+
+    .search-form__item-select:last-of-type,
+    .search-form__item-button {
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+
+    .content__wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(195.5px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content__wrapper {
+            padding: 0 20px 20px;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        }
+}

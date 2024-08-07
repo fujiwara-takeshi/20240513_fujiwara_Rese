@@ -1,0 +1,165 @@
+.header {
+    width: 99%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    background-color: #e7e7e7;
+}
+
+.header__inner {
+    max-width: 1230px;
+    height: 100%;
+    padding: 20px 40px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__inner-left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo__menu-icon {
+    text-decoration: none;
+}
+
+.menu-icon {
+    padding: 5px;
+    color: #e7e7e7;
+    background-color: rgb(55, 92, 255);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #9b9b9b;
+}
+
+.logo__link {
+    padding-left: 12px;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(55, 92, 255);
+    text-decoration: none;
+}
+
+.header__inner-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background-color: #e7e7e7;
+    overflow: scroll;
+}
+
+.content {
+    width: 100%;
+}
+
+.content__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__inner {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.modal__header {
+    max-width: 1230px;
+    height: 100px;
+    padding: 20px 26px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.modal__close-button {
+    text-decoration: none;
+}
+
+.close-icon {
+    padding: 5px;
+    color: #fff;
+    background-color: rgb(55, 92, 255);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #9b9b9b;
+}
+
+.modal__content {
+    max-width: 1230px;
+    margin: 100px auto 0;
+}
+
+.modal__link-item {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal__link {
+    font-size: 26px;
+    color: rgb(55, 92, 255);
+    text-decoration: none;
+}
+
+.button-logout {
+    padding: 0;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .header__inner-left {
+        width: 30%;
+    }
+
+    .menu-icon {
+        padding: 2px;
+    }
+
+    .logo__link {
+        padding-left: 4px;
+        font-size: 22px;
+    }
+
+    .header__inner-right {
+        width: 68%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header__inner {
+        padding: 20px 20px;
+    }
+}

@@ -1,0 +1,24 @@
+.header {
+    display: none;
+}
+
+.container {
+    margin: 50px auto;
+}
+
+.col-6 {
+    padding: 0;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    .col-6 {
+        max-width: 80%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .col-6 {
+        max-width: 90%;
+    }
+}

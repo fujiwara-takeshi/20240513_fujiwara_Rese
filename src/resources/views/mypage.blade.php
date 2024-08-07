@@ -59,6 +59,10 @@
                                         <th>Number</th>
                                         <td>{{ $reserved->pivot->number }}名</td>
                                     </tr>
+                                    <tr>
+                                        <th>Course</th>
+                                        <td>{{ $reserved->course }}</td>
+                                    </tr>
                                 </table>
                             </div>
                             <div class="reservation__bottom">
@@ -82,7 +86,7 @@
                                     <div class="shop-card__about-text">
                                         <p class="shop-card__about-name">{{ $favorite->name }}</p>
                                         <span class="shop-card__about-tag">#{{ $favorite->area->area_name }}</span>
-                                        <span class="shop-card__about-tag">#{{ $favorite->genre->area_name }}</span>
+                                        <span class="shop-card__about-tag">#{{ $favorite->genre->genre_name }}</span>
                                     </div>
                                     <div class="shop-card__unit">
                                         <a class="shop-card__link-detail" href="{{ route('shop.show', ['shop_id' => $favorite->id]) }}">詳しくみる</a>
@@ -116,7 +120,7 @@
                         @csrf
                         <ul>
                             <li>
-                                <label for="shop_id">担当店舗<span class="label__span--red">※必須</span></label>
+                                <label class="form-label" for="shop_id">担当店舗<span class="label__span--red">※必須</span></label>
                                 <select class="create-representative__form-item-select" name="shop_id" id="shop_id">
                                     <option selected disabled hidden>担当店舗を選択</option>
                                     <option value="">新規店舗</option>
@@ -126,7 +130,7 @@
                                 </select>
                             </li>
                             <li>
-                                <label for="name">名前<span class="label__span--red">※必須</span></label>
+                                <label class="form-label" for="name">名前<span class="label__span--red">※必須</span></label>
                                 <input class="create-representative__form-item-input" id="name" type="text" name="name" value="{{ old('name') }}">
                                 <div class="form__item-error">
                                     @error('name')
@@ -135,7 +139,7 @@
                                 </div>
                             </li>
                             <li>
-                                <label for="email">メールアドレス<span class="label__span--red">※必須</span></label>
+                                <label class="form-label" for="email">メールアドレス<span class="label__span--red">※必須</span></label>
                                 <input class="create-representative__form-item-input" id="email" type="text" name="email" value="{{ old('email') }}">
                                 <div class="form__item-error">
                                     @error('email')
@@ -144,7 +148,7 @@
                                 </div>
                             </li>
                             <li>
-                                <label for="password">パスワード<span class="label__span--red">※必須</span></label>
+                                <label class="form-label" for="password">パスワード<span class="label__span--red">※必須</span></label>
                                 <input class="create-representative__form-item-input" id="password" type="text" name="password">
                                 <div class="form__item-error">
                                     @error('password')
@@ -156,55 +160,9 @@
                         <button class="create-representative__form-button">登録</button>
                     </form>
                 </div>
-                <div class="email">
-                    <h3 class="email__title">メールフォーム</h3>
-                    <div class="form__item-error">
-                        @error('sender')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                    <form class="email__form" action="{{ route('mail.confirm')}}" method="post">
-                        @csrf
-                        <table class="email__form-table">
-                            <tr>
-                                <th class="email__form-table-header">
-                                    <label for="sender">To</label>
-                                </th>
-                                <td class="email__form-table-data">
-                                    @isset($sender)
-                                        <p class="email__form-sender-name">{{ $sender->name }}</p>
-                                        <a class="email__mypage-link" href="{{ route('user.index', ['user_id' => $user->id]) }}">×</a>
-                                        <input type="hidden" name="sender" value="{{ $sender->id }}">
-                                    @endisset
-                                    <a class="email__form-users-link" href="{{ route('users') }}">送信先選択</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="email__form-table-header">
-                                    <label for="subject">件名</label>
-                                </th>
-                                <td class="email__form-table-data">
-                                    <input class="email__form-item-input" type="text" name="subject" id="subject" value="{{ old('subject') }}">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="email__form-table-header">
-                                    <label for="message">本文</label>
-                                </th>
-                                <td class="email__form-table-data">
-                                    <textarea class="email__form-item-textarea" name="message" id="message" rows="10">{{ old('message') }}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td class="email__form-table-data">
-                                    <button class="email__form-button-submit">確認</button>
-                                    <input class="email__form-button-reset" type="reset">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
+
+                @include('common.email-form')
+
             </div>
         @else
             <div class="content__representative">
@@ -251,19 +209,19 @@
                             @method('patch')
                             <ul>
                                 <li>
-                                    <label for="shop_name">担当店舗名<span class="label__span--red">※編集不可</span></label>
+                                    <label class="form-label" for="shop_name">担当店舗名<span class="label__span--red">※編集不可</span></label>
                                     <input class="update-shop__form-item-input" id="shop_name" type="text" name="shop_name" value="{{ $store_in_charge->name }}" readonly>
                                 </li>
                                 <li>
-                                    <label for="area_id">エリア<span class="label__span--red">※編集不可</span></label>
+                                    <label class="form-label" for="area_id">エリア<span class="label__span--red">※編集不可</span></label>
                                     <input class="update-shop__form-item-input" id="area_id" type="text" name="area_id" value="{{ $store_in_charge->area->area_name }}" readonly>
                                 </li>
                                 <li>
-                                    <label for="genre_id">ジャンル<span class="label__span--red">※編集不可</span></label>
+                                    <label class="form-label" for="genre_id">ジャンル<span class="label__span--red">※編集不可</span></label>
                                     <input class="update-shop__form-item-input" id="genre_id" type="text" name="genre_id" value="{{ $store_in_charge->genre->genre_name }}" readonly>
                                 </li>
                                 <li>
-                                    <label for="detail">店舗詳細<span class="label__span--red">※必須</span></label>
+                                    <label class="form-label" for="detail">店舗詳細<span class="label__span--red">※必須</span></label>
                                     <textarea class="update-shop__form-item-textarea" id="detail" rows="6" name="detail">{{ $store_in_charge->detail }}</textarea>
                                     <div class="form__item-error">
                                         @error('detail')
@@ -272,7 +230,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <label for="image">画像アップロード<span class="label__span--red">※必須</span></label>
+                                    <label class="form-label" for="image">画像アップロード<span class="label__span--red">※必須</span></label>
                                     <input class="update-shop__form-item-input" id="image" type="file"  name="image" value="{{ old('image') }}">
                                     <div class="form__item-error">
                                         @error('image')
@@ -284,7 +242,7 @@
                             <button class="update-shop__form-button">更新</button>
                         </form>
                     </div>
-                    @else
+                @else
                     <div class="create-shop">
                         <h3 class="create-shop__title">店舗情報作成</h3>
                         <div class="create-shop__form-block">
@@ -293,7 +251,7 @@
                                 @csrf
                                 <ul>
                                     <li>
-                                        <label for="shop_name">担当店舗名<span class="label__span--red">※必須</span></label>
+                                        <label class="form-label" for="shop_name">担当店舗名<span class="label__span--red">※必須</span></label>
                                         <input class="store-shop__form-item-input" id="shop_name" type="text" name="shop_name" value="{{ old('shop_name') }}">
                                         <div class="form__item-error">
                                             @error('shop_name')
@@ -302,35 +260,45 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <label for="area_id">エリア<span class="label__span--red">※必須</span></label>
+                                        <label class="form-label" for="area_id">エリア<span class="label__span--red">※必須</span></label>
                                         <select class="store-shop__form-item-select" id="area_id" name="area_id">
                                             <option selected disabled hidden>エリアを選択</option>
+                                            <option value="新規エリア">新規エリア</option>
                                             @foreach($areas as $area)
                                                 <option value="{{ $area->id }}">{{ $area->area_name }}</option>
                                             @endforeach
                                         </select>
+                                        <input class="store-shop__form-item-input" id="area_name" type="text" name="area_name" value="{{ old('area_name') }}" placeholder="新規エリア名を入力してください" disabled="disabled">
                                         <div class="form__item-error">
                                             @error('area_id')
                                                 {{ $message }}
                                             @enderror
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <label for="genre_id">ジャンル<span class="label__span--red">※必須</span></label>
-                                        <select class="store-shop__form-item-select" name="genre_id" id="genre_id">
-                                            <option selected disabled hidden>ジャンルを選択</option>
-                                            @foreach($genres as $genre)
-                                                <option value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="form__item-error">
-                                            @error('genre_id')
+                                            @error('area_name')
                                                 {{ $message }}
                                             @enderror
                                         </div>
                                     </li>
                                     <li>
-                                        <label for="detail">店舗詳細<span class="label__span--red">※必須</span></label>
+                                        <label class="form-label" for="genre_id">ジャンル<span class="label__span--red">※必須</span></label>
+                                        <select class="store-shop__form-item-select" name="genre_id" id="genre_id">
+                                            <option selected disabled hidden>ジャンルを選択</option>
+                                            <option value="新規ジャンル">新規ジャンル</option>
+                                            @foreach($genres as $genre)
+                                                <option value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input class="store-shop__form-item-input" id="genre_name" type="text" name="genre_name" value="{{ old('genre_name') }}" placeholder="新規ジャンル名を入力してください" disabled="disabled">
+                                        <div class="form__item-error">
+                                            @error('genre_id')
+                                                {{ $message }}
+                                            @enderror
+                                            @error('genre_name')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label class="form-label" for="detail">店舗詳細<span class="label__span--red">※必須</span></label>
                                         <textarea class="store-shop__form-item-textarea" id="detail" rows="6" name="detail">{{ old('detail') }}</textarea>
                                         <div class="form__item-error">
                                             @error('detail')
@@ -339,7 +307,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <label for="image">画像アップロード<span class="label__span--red">※必須</span></label>
+                                        <label class="form-label" for="image">画像アップロード<span class="label__span--red">※必須</span></label>
                                         <input class="store-shop__form-item-input" id="image" type="file"  name="image" value="{{ old('image') }}">
                                         <div class="form__item-error">
                                             @error('image')
@@ -351,95 +319,40 @@
                                 <button class="store-shop__form-button">登録</button>
                             </form>
                         </div>
-                        <div class="create-shop__form-block">
-                            <h4 class="store-area__form-title">新規エリア情報登録</h4>
-                            <form class="store-area__form" action="{{ route('area.store') }}" method="post">
-                                @csrf
-                                <ul>
-                                    <li>
-                                        <label for="area_name">エリア名<span class="label__span--red">※必須</span></label>
-                                        <input class="store-area__form-item-input" id="area_name" type="text" name="area_name" value="{{ old('area_name') }}">
-                                        <div class="form__item-error">
-                                            @error('area_name')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
-                                    </li>
-                                </ul>
-                                <button class="store-area__form-button">登録</button>
-                            </form>
-                        </div>
-                        <div class="create-shop__form-block">
-                            <h4 class="store-genre__form-title">新規ジャンル情報登録</h4>
-                            <form class="store-genre__form" action="{{ route('genre.store') }}" method="post">
-                                @csrf
-                                <ul>
-                                    <li>
-                                        <label for="genre_name">ジャンル名<span class="label__span--red">※必須</span></label>
-                                        <input class="store-genre__form-item-input" id="genre_name" type="text" name="genre_name" value="{{ old('genre_name') }}">
-                                        <div class="form__item-error">
-                                            @error('genre_name')
-                                                {{ $message }}
-                                            @enderror
-                                        </div>
-                                    </li>
-                                </ul>
-                                <button class="store-genre__form-button">登録</button>
-                            </form>
-                        </div>
                     </div>
                 @endisset
-                <div class="email">
-                    <h3 class="email__title">メールフォーム</h3>
-                    <div class="form__item-error">
-                        @error('sender')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                    <form class="email__form" action="{{ route('mail.confirm')}}" method="post">
-                        @csrf
-                        <table class="email__form-table">
-                            <tr>
-                                <th class="email__form-table-header">
-                                    <label for="sender">To</label>
-                                </th>
-                                <td class="email__form-table-data">
-                                    @isset($sender)
-                                        <p class="email__form-sender-name">{{ $sender->name }}</p>
-                                        <a class="email__mypage-link" href="{{ route('user.index', ['user_id' => $user->id]) }}">×</a>
-                                        <input type="hidden" name="sender" value="{{ $sender->id }}">
-                                    @endisset
-                                    <a class="email__form-users-link" href="{{ route('users') }}">送信先選択</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="email__form-table-header">
-                                    <label for="subject">件名</label>
-                                </th>
-                                <td class="email__form-table-data">
-                                    <input class="email__form-item-input" type="text" name="subject" id="subject" value="{{ old('subject') }}">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="email__form-table-header">
-                                    <label for="message">本文</label>
-                                </th>
-                                <td class="email__form-table-data">
-                                    <textarea class="email__form-item-textarea" name="message" id="message" rows="10">{{ old('message') }}</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td class="email__form-table-data">
-                                    <button class="email__form-button-submit">確認</button>
-                                    <input class="email__form-button-reset" type="reset">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
+
+                @include('common.email-form')
+
             </div>
         @endif
     @endif
 </div>
 @endsection
+
+<script>
+window.onload = function() {
+    const area_id = document.getElementById("area_id");
+    const area_name = document.getElementById("area_name");
+    const genre_id = document.getElementById("genre_id");
+    const genre_name = document.getElementById("genre_name");
+    area_id.addEventListener('change', function() {
+        const select_area = area_id.value;
+        console.log(select_area);
+        if (select_area =='新規エリア') {
+            area_name.disabled = false;
+        } else {
+            area_name.disabled = true;
+        }
+    });
+    genre_id.addEventListener('change', function() {
+        const select_genre = genre_id.value;
+        console.log(select_genre);
+        if (select_genre =='新規ジャンル') {
+            genre_name.disabled = false;
+        } else {
+            genre_name.disabled = true;
+        }
+    });
+}
+</script>

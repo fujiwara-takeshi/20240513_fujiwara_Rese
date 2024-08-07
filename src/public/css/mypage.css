@@ -83,6 +83,7 @@
 
 .reservation__table {
     font-size: 14px;
+    color: #fff;
 }
 
 .reservation__table th {
@@ -229,9 +230,8 @@
 
 .create-representative__form-item-select,
 .store-shop__form-item-select {
-    width: 200px;
+    width: 140px;
     padding: 6px;
-    display: block;
 }
 
 .create-representative__form-item-input,
@@ -240,9 +240,8 @@
 .store-shop__form-item-input,
 .store-area__form-item-input,
 .store-genre__form-item-input {
-    width: 400px;
+    width: 360px;
     padding: 4px;
-    display: block;
 }
 
 .email__form-item-textarea,
@@ -253,6 +252,10 @@
     display: block;
     font-family: Arial, Helvetica, sans-serif;
     resize: none;
+}
+
+.form-label {
+    display: block;
 }
 
 .form__item-error {
@@ -383,13 +386,19 @@
         font-size: 12px;
     }
 
+    .create-representative__form-item-select,
+    .store-shop__form-item-select {
+        width: 130px;
+        padding: 6px;
+    }
+
     .create-representative__form-item-input,
     .email__form-item-input,
     .update-shop__form-item-input,
     .store-shop__form-item-input,
     .store-area__form-item-input,
     .store-genre__form-item-input {
-        width: 300px;
+        width: 226px;
     }
 }
 
@@ -418,7 +427,7 @@
 
     .create-representative__form-item-select,
     .store-shop__form-item-select {
-        width: 140px;
+        display: block;
     }
 
     .create-representative__form-item-input,
@@ -428,5 +437,10 @@
     .store-area__form-item-input,
     .store-genre__form-item-input {
         width: 100%;
+        display: block;
+    }
+
+    .store-shop__form-item-select + .store-shop__form-item-input {
+        margin-top: 6px;
     }
 }

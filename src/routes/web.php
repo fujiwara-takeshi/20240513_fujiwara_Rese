@@ -35,10 +35,6 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::post('/shop', [ShopController::class, 'store'])->name('shop.store');
     Route::patch('/shop/{shop_id}', [ShopController::class, 'update'])->name('shop.update');
 
-    Route::post('/area', [AreaController::class, 'store'])->name('area.store');
-
-    Route::post('/genre', [GenreController::class, 'store'])->name('genre.store');
-
     Route::post('/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
     Route::delete('/favorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
 

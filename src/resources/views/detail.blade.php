@@ -174,11 +174,9 @@
                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                         <select class="form__item-select" name="evaluation">
                             <option selected disabled hidden>評価を選択してください</option>
-                            <option value="1">☆1</option>
-                            <option value="2">☆2</option>
-                            <option value="3">☆3</option>
-                            <option value="4">☆4</option>
-                            <option value="5">☆5</option>
+                            @for($i = 1; $i <= 5; $i++)
+                                <option value="{{ $i }}">☆{{ $i }}</option>
+                            @endfor
                         </select>
                         <div class="form__item-error">
                             @error('evaluation')
@@ -242,8 +240,6 @@
                                 <option value="22:00">22:00</option>
                                 <option value="22:30">22:30</option>
                                 <option value="23:00">23:00</option>
-                                <option value="23:30">23:30</option>
-                                <option value="24:00">24:00</option>
                             </select>
                             <div class="form__item-error">
                                 @error('time')
@@ -254,26 +250,9 @@
                         <div class="reservation__form-item">
                             <select class="form__item-select" id="number" name="number" oninput="updateNumber()">
                                 <option selected disabled hidden>予約人数を選択</option>
-                                <option value="1">1名</option>
-                                <option value="2">2名</option>
-                                <option value="3">3名</option>
-                                <option value="4">4名</option>
-                                <option value="5">5名</option>
-                                <option value="6">6名</option>
-                                <option value="7">7名</option>
-                                <option value="8">8名</option>
-                                <option value="9">9名</option>
-                                <option value="10">10名</option>
-                                <option value="11">11名</option>
-                                <option value="12">12名</option>
-                                <option value="13">13名</option>
-                                <option value="14">14名</option>
-                                <option value="15">15名</option>
-                                <option value="16">16名</option>
-                                <option value="17">17名</option>
-                                <option value="18">18名</option>
-                                <option value="19">19名</option>
-                                <option value="20">20名</option>
+                                @for($i = 1; $i <= 20; $i++)
+                                    <option value="{{ $i }}">{{ $i }}名</option>
+                                @endfor
                             </select>
                             <div class="form__item-error">
                                 @error('number')

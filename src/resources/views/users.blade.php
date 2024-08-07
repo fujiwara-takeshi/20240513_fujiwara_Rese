@@ -42,7 +42,7 @@
         @endforeach
     </table>
     <div class="customer-users__pagination">
-        {{ $customers->links() }}
+        {{ $customers->onEachSide(1)->links() }}
     </div>
 </div>
 @endsection

@@ -32,7 +32,7 @@ class ShopController extends Controller
     {
         $user = Auth::user();
         $shop = Shop::with('area', 'genre')->find($shop_id);
-        $reservation = Reservation::where('shop_id', $shop_id)->orderBy('datetime', 'asc')->first();
+        $reservation = Reservation::where('user_id', $user->id)->where('shop_id', $shop_id)->orderBy('datetime', 'asc')->first();
         if ($reservation && $reservation->datetime <= now()) {
             $is_reserved = true;
             return view('detail', compact('user', 'shop', 'is_reserved'));
@@ -46,8 +46,18 @@ class ShopController extends Controller
         $path = $image->store('public/images');
 
         $shop = new Shop();
-        $shop->area_id = $request->area_id;
-        $shop->genre_id = $request->genre_id;
+        if ($request->area_id === '新規エリア') {
+            $area = Area::create(['area_name' => $request->area_name]);
+            $shop->area_id = $area->id;
+        } else {
+            $shop->area_id = $request->area_id;
+        }
+        if ($request->genre_id === '新規ジャンル') {
+            $genre = Genre::create(['genre_name' => $request->genre_name]);
+            $shop->genre_id = $genre->id;
+        } else {
+            $shop->genre_id = $request->genre_id;
+        }
         $shop->name = $request->shop_name;
         $shop->detail = $request->detail;
         $shop->image_path = $path;

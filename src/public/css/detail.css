@@ -154,7 +154,7 @@
 }
 
 .reservation__table th {
-    padding-right: 40px;
+    padding-right: 36px;
     font-weight: normal;
     text-align: left;
 }
@@ -225,7 +225,8 @@
         display: block;
     }
 
-    .form__item-error {
+    .form__item-error,
+    .form__item-alert {
         font-size: 14px;
     }
 
@@ -240,11 +241,12 @@
 
     .reservation__table th {
         padding-right: 0;
-        display: block;
+        display: table-row;
     }
 
     .reservation__table td {
         width: 100%;
+        height: 20px;
         display: block;
         text-align: center;
     }
@@ -267,6 +269,18 @@
 
     .form__item-radio-block {
         display: flex;
+    }
+
+    .reservation__table th {
+        width: 100px;
+        padding-right: 40px;
+        display: table-cell;
+    }
+
+    .reservation__table td {
+        width: auto;
+        display: table-cell;
+        text-align: left;
     }
 
     .form__top--store-reservation {

@@ -90,9 +90,16 @@
 }
 
 .customer-users__pagination {
-    margin-top: 20px;
     font-size: 18px;
-    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    margin: 0 5px;
 }
 
 @media screen and (max-width: 768px) {

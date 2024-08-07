@@ -40,7 +40,12 @@
         padding: 100px 10px;
     }
 
-    .message__text {
+    .message-text {
+        font-size: 17px;
+    }
+
+    .message-success {
         font-size: 16px;
+        color: #52e22e;
     }
 }

@@ -22,6 +22,16 @@ class UserController extends Controller
             $user = User::with('reservedShops', 'favoriteShops')->where('id', $user_id)->first();
             if ($user->role_id === 1) {
                 $reserved_shops = $user->reservedShops()->where('datetime', '>=', now())->orderBy('datetime', 'asc')->get();
+                foreach ($reserved_shops as $reserved_shop) {
+                    $course_id = $reserved_shop->pivot->course_id;
+                    if ($course_id === 1) {
+                        $reserved_shop->course = '3000円コース';
+                    } elseif ($course_id === 2) {
+                        $reserved_shop->course = '5000円コース';
+                    } else {
+                        $reserved_shop->course = '席のみ予約';
+                    }
+                }
                 $favorites = $user->favoriteShops()->with('area', 'genre')->get();
                 return view('mypage', compact('user', 'reserved_shops', 'favorites'));
             } elseif ($user->role_id === 2) {
@@ -79,7 +89,7 @@ class UserController extends Controller
             $customers = User::where('role_id', 1)->KeywordSearch($request->keyword)->simplePaginate(10);
             return view('users', compact('customers'));
         }
-        $customers = User::where('role_id', 1)->simplePaginate(10);
+        $customers = User::where('role_id', 1)->paginate(10);
         return view('users', compact('customers'));
     }
 }

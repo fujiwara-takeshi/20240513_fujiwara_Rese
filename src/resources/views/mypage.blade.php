@@ -80,7 +80,7 @@
                         @foreach($favorites as $favorite)
                             <div class="shop-card">
                                 <div class="shop-card__img-box">
-                                    <img src="{{ Storage::url($favorite->image_path) }}" alt="Shop Image">
+                                    <img src="{{ $favorite->getS3Url() }}" alt="Shop Image">
                                 </div>
                                 <div class="shop-card__about-box">
                                     <div class="shop-card__about-text">
@@ -231,7 +231,7 @@
                                 </li>
                                 <li>
                                     <label class="form-label" for="image">画像アップロード<span class="label__span--red">※必須</span></label>
-                                    <input class="update-shop__form-item-input" id="image" type="file"  name="image" value="{{ old('image') }}">
+                                    <input class="update-shop__form-item-input" id="image" type="file" name="image" accept="image/*" value="{{ old('image') }}">
                                     <div class="form__item-error">
                                         @error('image')
                                             {{ $message }}
@@ -308,7 +308,7 @@
                                     </li>
                                     <li>
                                         <label class="form-label" for="image">画像アップロード<span class="label__span--red">※必須</span></label>
-                                        <input class="store-shop__form-item-input" id="image" type="file"  name="image" value="{{ old('image') }}">
+                                        <input class="store-shop__form-item-input" id="image" type="file" name="image" accept="image/*" value="{{ old('image') }}">
                                         <div class="form__item-error">
                                             @error('image')
                                                 {{ $message }}

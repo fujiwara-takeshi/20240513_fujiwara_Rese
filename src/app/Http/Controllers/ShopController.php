@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Shop;
 use App\Models\Favorite;
 use App\Models\Area;
@@ -42,8 +43,9 @@ class ShopController extends Controller
 
     public function store(ShopRequest $request)
     {
-        $image = $request->file('image');
-        $path = $image->store('public/images');
+        $file = $request->file('image');
+        $file_name = time() . '_' . $file->getClientOriginalName();
+        $path = Storage::disk('s3')->putFileAs('images', $file, $file_name);
 
         $shop = new Shop();
         if ($request->area_id === '新規エリア') {
@@ -60,7 +62,7 @@ class ShopController extends Controller
         }
         $shop->name = $request->shop_name;
         $shop->detail = $request->detail;
-        $shop->image_path = $path;
+        $shop->image_path = "images/{$file_name}";
         $shop->save();
 
         $user = User::find(Auth::id());
@@ -73,11 +75,12 @@ class ShopController extends Controller
     public function update($shop_id, ShopRequest $request)
     {
         $shop = Shop::find($shop_id);
-        $image = $request->file('image');
-        $path = $image->store('public/images');
+        $file = $request->file('image');
+        $file_name = time() . '_' . $file->getClientOriginalName();
+        $path = Storage::disk('s3')->putFileAs('images', $file, $file_name);
 
         $shop->detail = $request->detail;
-        $shop->image_path = $path;
+        $shop->image_path = "images/{$file_name}";
         $shop->save();
 
         return redirect()->route('user.index', ['user_id' => Auth::id()])->with('success', '店舗情報を更新しました');

@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="detail__img-box">
-            <img src="{{ Storage::url($shop->image_path) }}" alt="Shop Image">
+            <img src="{{ $shop->getS3Url() }}" alt="Shop Image">
         </div>
         <div class="detail__about">
             <div class="detail-about__tag">

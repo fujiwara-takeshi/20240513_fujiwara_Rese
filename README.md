@@ -162,19 +162,19 @@ https://stripe.com/jp</br>
    `git config --global user.name "fujiwara-takeshi"`</br>
    `git config --global user.email tfdxvjiyre75528@gmail.com`</br>
 #### プロジェクトをクローン
-`git clone https://github.com/fujiwara-takeshi/20240513_fujiwara_Rese.git`</br>
+　　`git clone https://github.com/fujiwara-takeshi/20240513_fujiwara_Rese.git`</br>
 #### Dockerインストール・設定
-`sudo amazon-linux-extras install docker -y`</br>
-`sudo systemctl start docker`</br>
-`sudo systemctl enable docker`</br>
-`sudo usermod -aG docker ec2-user`</br>
-`exit`</br>
+　　`sudo amazon-linux-extras install docker -y`</br>
+　　`sudo systemctl start docker`</br>
+　　`sudo systemctl enable docker`</br>
+　　`sudo usermod -aG docker ec2-user`</br>
+　　`exit`</br>
 設定を反映させるために一度EC2からログアウトし、再ログインしてください。
 #### Docker Composeインストール・設定
 1. Docker Composeをインストール（以下、1行のコマンドになります）</br>
-`sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`</br>
+ `sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`</br>
 2. 実行権限設定</br>
-`sudo chmod +x /usr/local/bin/docker-compose`
+ `sudo chmod +x /usr/local/bin/docker-compose`
 #### Dockerコンテナのビルド・起動
 
    

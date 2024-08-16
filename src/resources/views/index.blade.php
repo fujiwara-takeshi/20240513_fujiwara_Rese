@@ -30,7 +30,7 @@
     @foreach($shops as $shop)
         <div class="shop-card">
             <div class="shop-card__img-box">
-                <img src="{{ Storage::url($shop->image_path) }}" alt="Shop Image">
+                <img src="{{ $shop->getS3Url() }}" alt="Shop Image">
             </div>
             <div class="shop-card__about-box">
                 <div class="shop-card__about-text">

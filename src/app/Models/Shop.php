@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Shop extends Model
 {
@@ -51,6 +52,11 @@ class Shop extends Model
         if (!empty($keyword)) {
             $query->where('name', 'like', '%' . $keyword . '%');
         }
+    }
+
+    public function getS3Url()
+    {
+        return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));
     }
 
 }

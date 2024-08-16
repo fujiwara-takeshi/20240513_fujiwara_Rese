@@ -19,7 +19,7 @@ class CreateReservationsTable extends Migration
             $table->foreignId('shop_id')->constrained()->cascadeOnDelete();
             $table->foreignId('course_id')->nullable()->constrained()->cascadeOnDelete();
             $table->datetime('datetime');
-            $table->unsignedInteger('number');
+            $table->unsignedTinyInteger('number');
             $table->timestamps();
         });
     }

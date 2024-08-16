@@ -5,11 +5,12 @@
 飲食店予約サービスの自社運用のため
 
 ## アプリケーションURL
+http://52.194.212.188/
 
 ・管理者ユーザーアカウントを１件登録済みなので、下記のメールアドレスとパスワードにてログインできます。</br>
- ユーザー名　　：上岡 純　様</br>
- メールアドレス：test@example.com</br>
- パスワード　　：password</br>
+ 　ユーザー名　　：上岡 純　様</br>
+ 　メールアドレス：test@example.com</br>
+ 　パスワード　　：password</br>
 
 ## 機能一覧
 ### ユーザー認証機能
@@ -54,7 +55,7 @@
 
 ## 使用技術
 フレームワーク：Laravel 8.83</br>
-プログラミング言語：PHP 7.4</br>
+プログラミング言語：PHP 8.1</br>
 Webサーバー：Nginx 1.21</br>
 データベースエンジン：MySQL 8.0</br>
 コンテナサービス：Docker 25.0</br>
@@ -84,6 +85,7 @@ Webサーバー：Nginx 1.21</br>
 5. セキュリティグループを作成
    インターネットからのHTTPSを許可と、HTTPトラフィックを許可にチェックを入れてください。
 6. インスタンスを起動ボタンをクリック
+7. インスタンスの一覧ページで作成したインスタンスのボックスにチェックを入れ、表示されるパブリックIPv4アドレスをメモしてください。環境変数の設定で必要になります。
 #### RDSデータベース作成
 1. RDSダッシュボードで右上のリージョンを東京に設定し、データベースの作成をクリック
 2. エンジンのタイプでMySQLを選択
@@ -130,19 +132,19 @@ Webサーバー：Nginx 1.21</br>
 #### メールサーバーの設定
 任意のメール用サーバーを選択します。</br>
 環境変数の設定で、メールサーバーのパスワードが必要になります。</br>
-下記には例として、Gmailアドレスを使用してサーバーとして使用する手順を記載します。</br>
+下記には例として、Gmailアドレスを使用してサーバーとして利用する手順を記載します。</br>
 
 1. GoogleのトップからGoogleアカウントアイコンをクリックし、Googleアカウントを管理をクリック
 2. サイドバーのセキュリティをクリック->2段階認証プロセスをクリックし、画面に従って有効にする
 3. アプリパスワードをクリック
 4. アプリ名を入力し、作成をクリック
-5. 16文字のパスワードが表示されるのでメモしてください。
+5. 16文字のアプリパスワードが表示されるのでメモしてください。
 #### Stripeアカウント作成
 Stripeのアカウントが無ければ以下のURLからアクセスし、画面に従って作成してください。</br>
 https://stripe.com/jp</br>
 
 ログイン後、ホーム画面の[Stripeを使ってみる]の中の公開可能キー、シークレットキーをクリックしてコピーアンドペーストしメモしてください。環境変数の設定で必要になります。
-### サーバーソフトインストール
+### サーバーソフトインストール・設定
 #### EC2インスタンスに接続
 1. EC2ダッシュボードから、インスタンス（実行中）をクリック
 2. 作成したEC2インスタンスにチェックを入れ、接続をクリックし、SSHクライアントを表示させておく
@@ -150,7 +152,7 @@ https://stripe.com/jp</br>
    `cd .ssh/`
 4. ペアキーの権限設定</br>
    `chmod 400 "〇〇〇〇.pem"`
-5. ログイン
+5. ログイン</br>
    表示させていたEC2のSSHクライアントから以下のようなコマンドをコピーアンドペーストします。</br>
    `ssh -i "〇〇〇〇.pem" ec2-user@ec2-??-???-???-???.ap-northeast-1.compute.amazonaws.com`</br>
    最初のログインの際には(yes/no/[fingerprint])?と表示されるので、yesと入力しENTERを押します。
@@ -176,5 +178,51 @@ https://stripe.com/jp</br>
 2. 実行権限設定</br>
  `sudo chmod +x /usr/local/bin/docker-compose`
 #### Dockerコンテナのビルド・起動
+　`cd 20240513_fujiwara_Rese/`</br>
+　`docker-compose up -d --build`
+#### Lavarelパッケージインストール
+　`docker-compose exec php bash`</br>
+　`composer update`</br>
+　`composer install`</br>
+　`exit`
+#### 環境変数の設定
+　`cd src/`</br>
+　`cp .env.example .env`</br>
+　`vim .env`</br>
+vimで.envファイルの編集ができるので、iキーを押してINSERTモードにして以下の箇所を変更してください。</br>
+※MAILの設定はGmailをサーバーとして利用する場合の設定を記載します。他のメールサーバーを使用する場合は適宜変更してください。</br>
+　`APP_URL=http://EC2インスタンスのIPv4アドレス`</br>
+　`DB_HOST=RDSエンドポイント`</br>
+　`DB_DATABASE=RDSデータベース名`</br>
+　`DB_USERNAME=admin`</br>
+　`DB_PASSWORD=RDSマスターパスワード`</br>
+　`MAIL_HOST=smtp.gmail.com`</br>
+　`MAIL_PORT=587`</br>
+　`MAIL_USERNAME=使用するメールアドレス`</br>
+　`MAIL_PASSWORD=Gmailアプリパスワード`</br>
+　`MAIL_ENCRYPTION=tls`</br>
+　`AWS_ACCESS_KEY_ID=IAMユーザーアクセスキー`</br>
+　`AWS_SECRET_ACCESS_KEY=IAMユーザーシークレットアクセスキー`</br>
+　`AWS_DEFAULT_REGION=ap-northeast-1`</br>
+　`AWS_BUCKET=S3バケット名`</br>
+　`STRIPE_PUBLIC_KEY=Stripeアカウント公開可能キー`</br>
+　`STRIPE_SECRET_KEY=Stripeアカウントシークレットキー`</br>
+編集が終わったらESCキーを押し、`:wq`と入力しENTERを押してください。vimがファイルを保存して終了します。
+#### アプリケーションキーの作成
+　`cd ../`</br>
+　`docker-compose exec php bash`</br>
+　`php artisan key:generate`</br>
+#### データベースマイグレーション・シーディング
+　`php artisan migrate`</br>
+　`php artisan db:seed`</br>
+　`exit`</br>
+#### 権限設定
+1. `ps aux | grep php`</br>
+   上記のコマンドを実行して、`php-fpm: pool www`を実行するユーザーを確認します。</br>
+   ![スクリーンショット 2024-08-16 220955](https://github.com/user-attachments/assets/31f6db4f-c995-487e-8d5b-7954d17740c9)</br>
+   上記の結果の例では、[33]というユーザー名がそれにあたります。</br>
+2. 以下のコマンドを実行する</br>
+   `docker-compose exec php chown -R 確認したユーザー名 storage`
 
-   
+以上
+　

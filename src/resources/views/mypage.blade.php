@@ -5,7 +5,7 @@
 @endsection
 
 @section('header__inner-right')
-@if($user->role_id !== 1)
+@if(isset($user) && $user->role_id !== 1)
     <a class="header__users-link" href="{{ route('users') }}">利用者ユーザー一覧</a>
 @endif
 @endsection

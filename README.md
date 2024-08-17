@@ -148,9 +148,10 @@ https://stripe.com/jp</br>
 #### EC2インスタンスに接続
 1. EC2ダッシュボードから、インスタンス（実行中）をクリック
 2. 作成したEC2インスタンスにチェックを入れ、接続をクリックし、SSHクライアントを表示させておく
-3. PCのコマンドラインから、ペアキーを保存した.sshディレクトリに移動<br/>
-   `cd .ssh/`
-4. ペアキーの権限設定</br>
+3. PCのコマンドラインから、EC2接続用のキーペアを保存した.sshディレクトリに移動<br/>
+   `cd .ssh/`<br>
+   ※`cd`の後のルートは作成したディレクトリ
+4. キーペアの権限設定</br>
    `chmod 400 "〇〇〇〇.pem"`
 5. ログイン</br>
    表示させていたEC2のSSHクライアントから以下のようなコマンドをコピーアンドペーストします。</br>
@@ -222,7 +223,16 @@ vimで.envファイルの編集ができるので、iキーを押してINSERTモ
    ![スクリーンショット 2024-08-16 220955](https://github.com/user-attachments/assets/31f6db4f-c995-487e-8d5b-7954d17740c9)</br>
    上記の結果の例では、[33]というユーザー名がそれにあたります。</br>
 2. 以下のコマンドを実行する</br>
-   `docker-compose exec php chown -R 確認したユーザー名 storage`
+   `docker-compose exec php chown -R 確認したユーザー名 storage`</br>
+#### 予約リマインダー機能有効化設定
+　`cd`</br>
+　`crontab -e`</br>
+ 
+Vimで編集するファイルが開くので、iキーを押してINSERTモードにして以下のように記述してください。（以下、1行のコマンドになります）</br>
+`* * * * * cd /home/ec2-user/20240513_fujiwara_Rese && /usr/local/bin/docker-compose exec php php /var/www/artisan schedule:run >> /dev/null 2>&1`</br>
+
+編集が終わったらESCキーを押し、`:wq`と入力しENTERを押してください。vimがファイルを保存して終了します。</br>
+
 
 以上
 　

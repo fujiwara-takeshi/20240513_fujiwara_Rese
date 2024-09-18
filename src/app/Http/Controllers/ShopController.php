@@ -11,6 +11,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Reservation;
 use App\Models\User;
+use App\Models\Review;
 use App\Http\Requests\ShopRequest;
 
 class ShopController extends Controller
@@ -34,9 +35,10 @@ class ShopController extends Controller
         $user = Auth::user();
         $shop = Shop::with('area', 'genre')->find($shop_id);
         $reservation = Reservation::where('user_id', $user->id)->where('shop_id', $shop_id)->orderBy('datetime', 'asc')->first();
+        $review = Review::where('user_id', $user->id)->where('shop_id', $shop_id)->first();
         if ($reservation && $reservation->datetime <= now()) {
             $is_reserved = true;
-            return view('detail', compact('user', 'shop', 'is_reserved'));
+            return view('detail', compact('user', 'shop', 'is_reserved', 'review'));
         }
         return view('detail', compact('user', 'shop'));
     }
@@ -45,7 +47,7 @@ class ShopController extends Controller
     {
         $file = $request->file('image');
         $file_name = time() . '_' . $file->getClientOriginalName();
-        $path = Storage::disk('s3')->putFileAs('images', $file, $file_name);
+        $path = Storage::disk('s3')->putFileAs('images/shops/', $file, $file_name);
 
         $shop = new Shop();
         if ($request->area_id === '新規エリア') {
@@ -62,7 +64,7 @@ class ShopController extends Controller
         }
         $shop->name = $request->shop_name;
         $shop->detail = $request->detail;
-        $shop->image_path = "images/{$file_name}";
+        $shop->image_path = "images/shops/{$file_name}";
         $shop->save();
 
         $user = User::find(Auth::id());
@@ -77,10 +79,10 @@ class ShopController extends Controller
         $shop = Shop::find($shop_id);
         $file = $request->file('image');
         $file_name = time() . '_' . $file->getClientOriginalName();
-        $path = Storage::disk('s3')->putFileAs('images', $file, $file_name);
+        $path = Storage::disk('s3')->putFileAs('images/shops/', $file, $file_name);
 
         $shop->detail = $request->detail;
-        $shop->image_path = "images/{$file_name}";
+        $shop->image_path = "images/shops/{$file_name}";
         $shop->save();
 
         return redirect()->route('user.index', ['user_id' => Auth::id()])->with('success', '店舗情報を更新しました');

@@ -8,18 +8,15 @@
 <div class="content__wrapper">
     <div class="detail">
         <div class="detail__top">
-            <div class="detail-top__left-inner">
-                <a class="detail-top__back-link" href="#" onclick="history.back()" return false;><</a>
-                <h2 class="detail-top__shop-name">{{ $shop->name }}</h2>
-            </div>
-            <div class="detail-top__right-inner">
-                @isset($is_reserved)
-                    <a class="detail-top__review-link" href="{{ route('review.create', ['shop_id' => $shop->id]) }}">レビューする</a>
-                @endisset
-            </div>
+            <a class="detail-top__back-link" href="#" onclick="history.back()" return false;><</a>
+            <h2 class="detail-top__shop-name">{{ $shop->name }}</h2>
         </div>
         <div class="detail__img-box">
-            <img src="{{ $shop->getS3Url() }}" alt="Shop Image">
+            @isset($review)
+                <img src="{{ $shop->getS3Url() }}" alt="Shop Image" height="180px">
+            @else
+                <img src="{{ $shop->getS3Url() }}" alt="Shop Image" height="300px">
+            @endisset
         </div>
         <div class="detail__about">
             <div class="detail-about__tag">
@@ -30,6 +27,67 @@
                 <p class="detail-about__text">{{ $shop->detail }}</p>
             </div>
         </div>
+        @if(isset($is_reserved) && empty($review))
+            <a class="review-link" href="{{ route('review.create', ['shop_id' => $shop->id]) }}">口コミを投稿する</a>
+        @endif
+        <a class="reviews-link" href="{{ route('reviews', ['shop_id' => $shop->id]) }}">全ての口コミ情報</a>
+        @isset($review)
+            <div class="review">
+                <div class="review__top">
+                    <a class="review__update-link" href="{{ route('review.edit', ['review_id' => $review->id]) }}">口コミを編集</a>
+                    <form class="review__delete-form" action="{{ route('review.destroy', ['review_id' => $review->id]) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button class="review__delete-button">口コミを削除</button>
+                    </form>
+                </div>
+                <div class="review__evaluation">
+                    @switch($review->evaluation)
+                        @case(1)
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            @break
+                        @case(2)
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            @break
+                        @case(3)
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            @break
+                        @case(4)
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star">star</i>
+                            @break
+                        @case(5)
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            <i class="material-symbols-outlined star checked">star</i>
+                            @break
+                        @default
+                            <p>この評価値は読み込みできません</p>
+                    @endswitch
+                </div>
+                <p class="review__comment">{{ $review->comment }}</p>
+                @isset($review->image_path)
+                    <img class="review__image" src="{{ $review->getS3Url() }}" alt="review image">
+                @endisset
+            </div>
+        @endisset
     </div>
     <div class="form">
         @if(isset($reservation))
@@ -162,37 +220,6 @@
                 </div>
                 <div class="form__bottom">
                     <button class="form__button">予約変更する</button>
-                </div>
-            </form>
-        @elseif(isset($is_review))
-            <form class="review__store-form" action="{{ route('review.store') }}" method="post">
-                @csrf
-                <div class="form__top form__top--store-review">
-                    <h2 class="form__title">レビュー投稿</h2>
-                    <div class="review__form-items">
-                        <input type="hidden" name="user_id" value="{{ $user->id }}">
-                        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-                        <select class="form__item-select" name="evaluation">
-                            <option selected disabled hidden>評価を選択してください</option>
-                            @for($i = 1; $i <= 5; $i++)
-                                <option value="{{ $i }}">☆{{ $i }}</option>
-                            @endfor
-                        </select>
-                        <div class="form__item-error">
-                            @error('evaluation')
-                                {{ $message }}
-                            @enderror
-                        </div>
-                        <textarea class="form__item-textarea" name="comment" rows="6" placeholder="コメントを記入してください（任意）"></textarea>
-                        <div class="form__item-error">
-                            @error('comment')
-                                {{ $message }}
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="form__bottom">
-                    <button class="form__button">投稿する</button>
                 </div>
             </form>
         @else

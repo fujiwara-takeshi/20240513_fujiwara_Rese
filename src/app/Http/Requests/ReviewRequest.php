@@ -25,7 +25,8 @@ class ReviewRequest extends FormRequest
     {
         return [
             'evaluation' => ['required'],
-            'comment' => ['max:255'],
+            'comment' => ['max:400'],
+            'image' => ['image', 'mimes:jpeg,png']
         ];
     }
 
@@ -33,7 +34,9 @@ class ReviewRequest extends FormRequest
     {
         return [
             'evaluation.required' => '評価を選択してください',
-            'comment.max' => 'コメントを255文字以下で入力してください',
+            'comment.max' => 'コメントを400文字以下で入力してください',
+            'image.image' => '画像形式のファイルをアップロードしてください',
+            'image.mimes' => '画像はjpegかpng形式のファイルをアップロードしてください'
         ];
     }
 }

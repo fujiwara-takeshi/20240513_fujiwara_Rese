@@ -22,12 +22,58 @@ class ShopController extends Controller
         $favorite_shop_ids = Favorite::where('user_id', $user->id)->pluck('shop_id')->toArray();
         $areas = Area::all();
         $genres = Genre::all();
-        if ($request->has('keyword')) {
-            $shops = Shop::with('area', 'genre')->AreaSearch($request->area_id)->GenreSearch($request->genre_id)->KeywordSearch($request->keyword)->get();
-            return view('index', compact('user', 'favorite_shop_ids', 'shops', 'areas', 'genres'));
+        $area_id = $request->area_id;
+        $genre_id = $request->genre_id;
+        $keyword = $request->keyword;
+        $sort = $request->sort;
+        switch($sort) {
+            case '1':
+                $shops = Shop::with('area', 'genre')->inRandomOrder()->get();
+                break;
+            case '2':
+                $shops = Shop::with('area', 'genre', 'reviews')->get();
+                foreach($shops as $shop) {
+                    $evaluations = [];
+                    foreach($shop->reviews as $review) {
+                        array_push($evaluations, $review->evaluation);
+                    }
+                    if (count($evaluations)) {
+                        $avg_evaluations = array_sum($evaluations) / count($evaluations);
+                    } else {
+                        $avg_evaluations = null;
+                    }
+                    $shop->avg_evaluations = $avg_evaluations;
+                }
+
+                $shops = $shops->sortByDesc(function($item, $key) {
+                    return $item->avg_evaluations === null ? PHP_FLOAT_MIN : $item->avg_evaluations;
+                })->values();
+                break;
+            case '3':
+                $shops = Shop::with('area', 'genre', 'reviews')->get();
+                foreach($shops as $shop) {
+                    $evaluations = [];
+                    foreach($shop->reviews as $review) {
+                        array_push($evaluations, $review->evaluation);
+                    }
+                    if (count($evaluations)) {
+                        $avg_evaluations = array_sum($evaluations) / count($evaluations);
+                    } else {
+                        $avg_evaluations = null;
+                    }
+                    $shop->avg_evaluations = $avg_evaluations;
+                }
+                $shops = $shops->sortBy(function($item, $key) {
+                    return $item->avg_evaluations === null ? PHP_FLOAT_MAX : $item->avg_evaluations;
+                })->values();
+                break;
+            default :
+                $shops = Shop::with('area', 'genre')->get();
         }
-        $shops = Shop::with('area', 'genre')->get();
-        return view('index', compact('user', 'favorite_shop_ids', 'shops', 'areas', 'genres'));
+        if ($request->has('keyword')) {
+            $shops = Shop::with('area', 'genre')->AreaSearch($area_id)->GenreSearch($genre_id)->KeywordSearch($keyword)->get();
+        }
+        return view('index', compact('user', 'favorite_shop_ids', 'shops', 'areas', 'genres', 'area_id', 'genre_id', 'sort', 'keyword'));
     }
 
     public function show($shop_id)

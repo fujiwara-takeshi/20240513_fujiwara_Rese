@@ -5,23 +5,31 @@
 @endsection
 
 @section('header__inner-right')
+<form class="sort-form" id="sort-form" action="{{ route('shop.index') }}" method="get">
+    <select class="sort-form__item-select" name="sort" id="sort">
+        <option value="" hidden>並び替え：評価高/低</option>
+        <option value="1" {{ $sort == '1' ? 'selected': '' }}>ランダム</option>
+        <option value="2" {{ $sort == '2' ? 'selected': '' }}>評価が高い順</option>
+        <option value="3" {{ $sort == '3' ? 'selected': '' }}>評価が低い順</option>
+    </select>
+</form>
 <form class="search-form" action="{{ route('shop.index') }}" method="get">
     <select class="search-form__item-select" name="area_id">
         <option value="">All area</option>
         @foreach ($areas as $area)
-            <option value="{{ $area->id }}">{{ $area->area_name }}</option>
+            <option value="{{ $area->id }}" {{ $area_id == $area->id ? 'selected': '' }}>{{ $area->area_name }}</option>
         @endforeach
     </select>
     <select class="search-form__item-select" name="genre_id">
         <option value="">All genre</option>
         @foreach ($genres as $genre)
-            <option value="{{ $genre->id }}">{{ $genre->genre_name }}</option>
+            <option value="{{ $genre->id }}" {{ $genre_id == $genre->id ? 'selected': '' }}>{{ $genre->genre_name }}</option>
         @endforeach
     </select>
     <button class="search-form__item-button">
         <i class="material-symbols-outlined search-icon">search</i>
     </button>
-    <input class="search-form__item-input" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="Search ...">
+    <input class="search-form__item-input" type="text" name="keyword" value="{{ $keyword }}" placeholder="Search ...">
 </form>
 @endsection
 
@@ -67,4 +75,12 @@
         </div>
     @endforeach
 </div>
+
+<script>
+    $(function() {
+        $('#sort').change(function() {
+            $('#sort-form').submit();
+        });
+    });
+</script>
 @endsection

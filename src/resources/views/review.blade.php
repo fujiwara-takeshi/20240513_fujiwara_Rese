@@ -144,7 +144,6 @@
     <button class="review__form-button" form="review">口コミを投稿</button>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 const textarea = document.getElementById('field');
 textarea.addEventListener('input', function() {

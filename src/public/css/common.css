@@ -133,6 +133,11 @@
     text-decoration: none;
 }
 
+.modal__link-item > a,
+.modal__link-item button {
+    font-family: inherit;
+}
+
 .button-logout {
     padding: 0;
     background-color: inherit;

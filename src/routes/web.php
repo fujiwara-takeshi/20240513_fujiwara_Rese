@@ -34,6 +34,7 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shop.show');
     Route::post('/shop', [ShopController::class, 'store'])->name('shop.store');
     Route::patch('/shop/{shop_id}', [ShopController::class, 'update'])->name('shop.update');
+    Route::post('/shop/import', [ShopController::class, 'import'])->name('shop.import');
 
     Route::post('/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
     Route::delete('/favorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
@@ -46,6 +47,10 @@ Route::middleware('auth', 'verified')->group(function() {
 
     Route::get('/review/{shop_id}/create', [ReviewController::class, 'create'])->name('review.create');
     Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
+    Route::delete('/review/{review_id}', [ReviewController::class, 'destroy'])->name('review.destroy');
+    Route::get('/review/{review_id}/edit', [ReviewController::class, 'edit'])->name('review.edit');
+    Route::patch('/review/{review_id}', [ReviewController::class, 'update'])->name('review.update');
+    Route::get('/reviews/{shop_id}', [ReviewController::class, 'reviews'])->name('reviews');
 
     Route::get('/mypage/{user_id}', [UserController::class, 'index'])->name('user.index');
     Route::post('/user', [UserController::class, 'store'])->name('user.store');

@@ -29,8 +29,8 @@ class ShopRequest extends FormRequest
             'area_name' =>['required_if:area_id, 新規エリア', 'string', 'unique:areas', 'max:50'],
             'genre_id' => ['required'],
             'genre_name' => ['required_if:genre_id, 新規ジャンル', 'string', 'unique:genres', 'max:50'],
-            'detail' => ['required', 'string', 'max:255'],
-            'image' => ['required']
+            'detail' => ['required', 'string', 'max:400'],
+            'image' => ['required', 'image', 'mimes:jpeg,png']
         ];
     }
 
@@ -52,8 +52,10 @@ class ShopRequest extends FormRequest
             'genre_name.max' => 'ジャンル名を50文字以下で入力してください',
             'detail.required' => '店舗詳細を入力してください',
             'detail.string' => '店舗詳細を文字列で入力してください',
-            'detail.max' => '店舗詳細を255文字以下で入力してください',
-            'image.required' => '画像ファイルを選択してください'
+            'detail.max' => '店舗詳細を400文字以下で入力してください',
+            'image.required' => '画像ファイルを選択してください',
+            'image.image' => '画像形式のファイルをアップロードしてください',
+            'image.mimes' => '画像はjpeg形式かpng形式のファイルをアップロードしてください'
         ];
     }
 }

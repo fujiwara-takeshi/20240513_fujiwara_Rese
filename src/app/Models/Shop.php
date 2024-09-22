@@ -28,6 +28,11 @@ class Shop extends Model
         return $this->belongsTo(Genre::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function reservedUsers()
     {
         return $this->belongsToMany(User::class, 'reservations', 'shop_id', 'user_id')->using(CustomReservation::class)->withPivot('course_id','datetime', 'number');

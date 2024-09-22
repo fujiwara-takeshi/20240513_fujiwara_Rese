@@ -40,6 +40,7 @@
 .reservations__title,
 .favorites__title,
 .create-representative__title,
+.import-shop__title,
 .reservations-by-shop__title,
 .update-shop__title,
 .create-shop__title,
@@ -193,6 +194,7 @@
 }
 
 .create-representative,
+.import-shop,
 .email,
 .reservations-by-shop,
 .update-shop,
@@ -202,6 +204,7 @@
 }
 
 .create-representative__form,
+.import-shop__form,
 .email__form,
 .update-shop__form,
 .store-shop__form,
@@ -244,6 +247,11 @@
     padding: 4px;
 }
 
+.import-shop__form-item-input {
+    display: block;
+    margin-bottom: 20px;
+}
+
 .email__form-item-textarea,
 .update-shop__form-item-textarea,
 .store-shop__form-item-textarea {
@@ -280,6 +288,7 @@
 }
 
 .create-representative__form-button,
+.import-shop__form-button,
 .email__form-button-submit,
 .update-shop__form-button,
 .store-shop__form-button,
@@ -403,6 +412,13 @@
 }
 
 @media screen and (max-width: 480px) {
+.header__users-link {
+    margin: 0 0 0 auto;
+    display: block;
+    text-align: right;
+    line-height: 60px;
+    }
+
     .content__user {
         display: block;
     }

@@ -160,6 +160,27 @@
                         <button class="create-representative__form-button">登録</button>
                     </form>
                 </div>
+                <div class="import-shop">
+                    <h3 class="import-shop__title">新規店舗情報インポート</h3>
+                    <form class="import-shop__form" action="{{ route('shop.import') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <label class="form-label" for="csv">CSVファイルを選択</label>
+                        <input class="import-shop__form-item-input" id="csv" type="file" name="csv">
+                        <button class="import-shop__form-button">インポート</button>
+                    </form>
+                    <div class="form__item-error">
+                        @error('csv')
+                            {{ $message }}
+                        @enderror
+                        @if(session('format_errors'))
+                            @foreach (session('format_errors') as $key => $val)
+                                @foreach($val as $msg)
+                                    <p>データ{{ $key }}件目 ： {{ $msg }}</p>
+                                @endforeach
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
 
                 @include('common.email-form')
 

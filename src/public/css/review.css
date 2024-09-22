@@ -1,0 +1,269 @@
+.modal {
+    z-index: 5;
+}
+
+.content__wrapper {
+    width: 100%;
+    padding: 0 40px;
+}
+
+.content__block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.content__left-outer {
+    width: 45%;
+    margin-top: 150px;
+    border-right: solid 2px #c4c4c4;
+}
+
+.content__left-inner {
+    width: 65%;
+    margin-left: 40px;
+}
+
+.content__title {
+    margin: 0 auto 60px;
+    font-size: 38px;
+    font-weight: normal;
+    line-height: 44px;
+}
+
+.shop-card {
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #9b9b9b;
+}
+
+.shop-card__img-box {
+    width: 100%;
+    height: 160px;
+    border-radius: 5px 5px 0 0;
+}
+
+.shop-card__img-box img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+.shop-card__about-box {
+    width: 100%;
+    height: 120px;
+    padding: 18px;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+}
+
+.shop-card__about-text {
+    margin-bottom: 6px;
+}
+
+.shop-card__about-name {
+    height: 18px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.shop-card__about-tag {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.shop-card__unit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-card__link-detail {
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(55, 92, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.shop-card__button-favorite {
+    padding: 0;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.content__right-outer {
+    width: 55%;
+    margin-top: 80px;
+    z-index: 2;
+}
+
+.content__right-inner {
+    width: 85%;
+    margin: 0 0 0 auto;
+}
+
+.review__form-item-block {
+    margin-bottom: 50px;
+}
+
+.review__form-item-block:last-child {
+    margin-bottom: 30px;
+}
+
+.review__form-item-title {
+    margin: 0 0 16px;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.review__form-evaluation {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.review__form-evaluation-input {
+    display: none;
+}
+
+.review__form-evaluation-label {
+    color: #c4c4c4;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.review__form-evaluation-label:hover,
+.review__form-evaluation-label:hover ~ .review__form-evaluation-label,
+.review__form-evaluation-input:checked ~ .review__form-evaluation-label {
+    color: rgb(55, 92, 255);
+}
+
+
+.material-symbols-outlined.star {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 40;
+    font-size: 40px;
+}
+
+.review__form-comment-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    color: #9c9c9c;
+    background-color: #e7e7e7;
+    border: solid 2px #c4c4c4;
+    resize: none;
+}
+
+.review__form-comment-charcounter {
+    margin: 0;
+    font-size: 10px;
+    text-align: right;
+}
+
+.review__form-image-area {
+    padding: 60px 0 40px;
+    background-color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.form-image-area__text-top {
+    margin: 0 0 6px;
+    font-size: 14px;
+}
+
+.form-image-area__text-bottom {
+    margin: 0;
+    font-size: 12px;
+}
+
+#input-file {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.form__item-error {
+    color: red;
+}
+
+.review__form-button {
+    width: 50%;
+    padding: 12px 0;
+    margin: 0 auto 40px;
+    display: block;
+    background-color: #fff;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        z-index: 10;
+    }
+
+    .content__block {
+        display: block;
+    }
+
+    .content__left-outer {
+        width: 100%;
+        margin-top: 150px;
+        border: none;
+    }
+
+    .content__left-inner {
+        width: 65%;
+        margin: 0 auto;
+    }
+
+    .content__right-outer {
+        width: 100%;
+        margin-top: 80px;
+        z-index: 0;
+    }
+
+    .content__right-inner {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .form-image-area__text-bottom {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content__left-inner {
+        width: 80%;
+    }
+
+    .content__title {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .review__form-item-title {
+        font-size: 20px;
+    }
+}
+
+

@@ -34,6 +34,7 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shop.show');
     Route::post('/shop', [ShopController::class, 'store'])->name('shop.store');
     Route::patch('/shop/{shop_id}', [ShopController::class, 'update'])->name('shop.update');
+    Route::post('/shop/import', [ShopController::class, 'import'])->name('shop.import');
 
     Route::post('/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
     Route::delete('/favorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
